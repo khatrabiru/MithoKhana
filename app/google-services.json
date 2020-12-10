@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "608040037562",
+    "project_id": "mitho-khana",
+    "storage_bucket": "mitho-khana.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608040037562:android:4ed9d4fe38b09e1470e683",
+        "android_client_info": {
+          "package_name": "com.khatribiru.mithokhana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608040037562-jmc670kr8ovo235ln219h31gbrfnsdr8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khatribiru.mithokhana",
+            "certificate_hash": "47a630381619f58cd8c8411794608c550c38f3b7"
+          }
+        },
+        {
+          "client_id": "608040037562-a4qbi65horqrtucvl8etjr6ejv5scchb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6_0uEw016vZ5s5Z3_k5FmxMFb_EM1bBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608040037562-a4qbi65horqrtucvl8etjr6ejv5scchb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
