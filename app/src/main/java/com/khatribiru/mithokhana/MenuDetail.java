@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.khatribiru.mithokhana.Common.Common;
+import com.khatribiru.mithokhana.Interface.ItemClickListener;
 import com.khatribiru.mithokhana.Model.Food;
 import com.khatribiru.mithokhana.Model.Menu;
 import com.khatribiru.mithokhana.ViewHolder.FoodViewHolder;
@@ -100,6 +101,16 @@ public class MenuDetail extends AppCompatActivity {
                         .into(foodViewHolder.image);
                 foodViewHolder.price.setText(food.getPrice() +" Rs");
                 foodViewHolder.ratingBar.setRating(food.getRating());
+
+                foodViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        // Start new activity
+                        Intent foodDetail = new Intent(MenuDetail.this, FoodDetail.class);
+                        foodDetail.putExtra("foodId", adapter.getRef(position).getKey());
+                        startActivity(foodDetail);
+                    }
+                });
             }
         };
         recycler_menu.setAdapter(adapter);
