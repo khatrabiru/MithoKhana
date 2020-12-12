@@ -12,7 +12,7 @@ public class Menu {
     private String RatingSum;            // Sum of ratings
     private String RatingCount;          // Number of individual reviews
     private List < Review > Reviews;     // All of the Individual Reviews
-    private List< String > Foods;        // List of Food-ids in this Menu
+    private List< Food > Foods;          // List of Foods in this Menu
     private List< String > Favourites;   // List of individual phone numbers who marked Favourite
 
     public Menu() {
@@ -28,7 +28,7 @@ public class Menu {
         RatingCount = ratingCount;
     }
 
-    public Menu(String name, String type, String price, String image, String description, String ratingSum, String ratingCount, List<Review> reviews, List<String> foods, List<String> favourites) {
+    public Menu(String name, String type, String price, String image, String description, String ratingSum, String ratingCount, List<Review> reviews, List<Food> foods, List<String> favourites) {
         Name = name;
         Type = type;
         Price = price;
@@ -105,11 +105,11 @@ public class Menu {
         Reviews = reviews;
     }
 
-    public List<String> getFoods() {
+    public List<Food> getFoods() {
         return Foods;
     }
 
-    public void setFoods(List<String> foods) {
+    public void setFoods(List<Food> foods) {
         Foods = foods;
     }
 

@@ -1,7 +1,9 @@
 package com.khatribiru.mithokhana.ViewHolder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.khatribiru.mithokhana.MainActivity;
+import com.khatribiru.mithokhana.MenuDetail;
 import com.khatribiru.mithokhana.Model.Menu;
 import com.khatribiru.mithokhana.R;
 import com.squareup.picasso.Picasso;
@@ -19,13 +23,17 @@ import java.util.List;
 
 public class VegMenuAdapter extends PagerAdapter {
 
+
     private List< Menu > menus;
     private LayoutInflater layoutInflater;
     private Context context;
+    private List< String > menuIds;
 
-    public VegMenuAdapter(List<Menu> menus, Context context) {
+
+    public VegMenuAdapter(List<Menu> menus, Context context,List< String > menuIds ) {
         this.menus = menus;
         this.context = context;
+        this.menuIds = menuIds;
     }
 
     @Override
@@ -55,7 +63,7 @@ public class VegMenuAdapter extends PagerAdapter {
 
 
         price = itemView.findViewById(R.id.price);
-        price.setText("NRS: " + menus.get(position).getPrice());
+        price.setText(menus.get(position).getPrice() + " Rs");
         price.setTextSize(12);
 
         ratingBar = itemView.findViewById(R.id.ratingBar);
@@ -64,8 +72,16 @@ public class VegMenuAdapter extends PagerAdapter {
         image = itemView.findViewById(R.id.image);
         Picasso.with(context).load(menus.get(position).getImage()).into(image);
 
-        container.addView(itemView, 0);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MenuDetail.class);
+                intent.putExtra("menuId", menuIds.get(position));
+                context.startActivity(intent);
+            }
+        });
 
+        container.addView(itemView, 0);
         return itemView;
     }
 
@@ -73,4 +89,5 @@ public class VegMenuAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView( (View) object );
     }
+
 }

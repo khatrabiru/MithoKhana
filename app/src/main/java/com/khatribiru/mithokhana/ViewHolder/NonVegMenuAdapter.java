@@ -9,7 +9,7 @@ import java.util.List;
 public class NonVegMenuAdapter extends VegMenuAdapter {
 
 
-    public NonVegMenuAdapter(List<Menu> menus, Context context) {
-        super(menus, context);
+    public NonVegMenuAdapter(List<Menu> menus, Context context, List<String> menuIds) {
+        super(menus, context, menuIds);
     }
 }

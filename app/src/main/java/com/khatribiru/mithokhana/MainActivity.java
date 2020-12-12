@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                    vegMenuAdapter = new VegMenuAdapter(menus, MainActivity.this);
+                    vegMenuAdapter = new VegMenuAdapter(menus, MainActivity.this, vegMenuIds);
                     vegViewPager = findViewById(R.id.vegViewPager);
                     vegViewPager.setAdapter(vegMenuAdapter);
                     vegViewPager.setPadding(0, 0, 90, 0);
@@ -144,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                    nonVegMenuAdapter = new NonVegMenuAdapter(menus, MainActivity.this);
+                    nonVegMenuAdapter = new NonVegMenuAdapter(menus, MainActivity.this, nonVegMenuIds);
                     nonVegViewPager = findViewById(R.id.nonVegViewPager);
                     nonVegViewPager.setAdapter(nonVegMenuAdapter);
                     nonVegViewPager.setPadding(0, 0, 90, 0);
