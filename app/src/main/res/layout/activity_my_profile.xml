@@ -185,7 +185,7 @@
         android:layout_marginTop="40dp"
         android:id="@+id/txtEditProfile"
         android:background="@drawable/bg_btn"
-        android:text="Edit text"
+        android:text="Edit profile"
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:gravity="center"
