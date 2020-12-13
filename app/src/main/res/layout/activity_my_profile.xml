@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyProfile">
+
+    <include layout="@layout/toolbar"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:src="@drawable/profile_image"
+        android:layout_width="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:layout_height="120dp"/>
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:text="Bir Bahadur Khatri"
+        android:layout_below="@id/profile_image"
+        android:textColor="#000"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/profile_ui"
+        android:layout_below="@id/profile_name"
+        android:src="@drawable/profile_design"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <View
+        android:layout_below="@id/profile_ui"
+        android:background="@color/black"
+        android:paddingRight="8dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_below="@+id/profile_ui"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_1"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="60dp"
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="First Name"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/first_name"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Bir Bahadur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_below="@id/linear_layout_1"
+        android:background="@color/purple_200"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_below="@+id/view_1"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_2"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="60dp"
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Last Name"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/last_name"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="Khatri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_2"
+            android:layout_below="@id/linear_layout_2"
+            android:background="@color/purple_200"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_below="@+id/view_2"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_3"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="65dp"
+            android:src="@drawable/ic_baseline_contact_phone_24"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Phone"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/phone"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:text="9847248618"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_3"
+        android:layout_below="@id/linear_layout_3"
+        android:background="@color/purple_200"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:layout_below="@id/view_3"
+        android:layout_marginTop="40dp"
+        android:id="@+id/txtEditProfile"
+        android:background="@drawable/bg_btn"
+        android:text="Edit text"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:drawableLeft="@drawable/ic_baseline_edit_24"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="-10dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"/>
+
+
+</RelativeLayout>
