@@ -79,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_account:
-                        // do work
+                        // load profile
+                        loadProfile();
                         return true;
                     default:
                         return false;
@@ -88,6 +89,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void loadProfile() {
+        if(Common.isConnectedToInternet(getBaseContext())) {
+
+            Intent intent = new Intent(MainActivity.this, Profile.class);
+            startActivity(intent);
+
+        } else {
+
+            Toast.makeText(MainActivity.this,"Please check internet", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+    }
+
     private void loadMenu() {
         if(Common.isConnectedToInternet(getBaseContext())) {
 

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:src="@drawable/profile_image"
+        android:layout_width="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_height="120dp"/>
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:text="Bir Bahadur Khatri"
+        android:layout_below="@id/profile_image"
+        android:textColor="#000"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/profile_ui"
+        android:layout_below="@id/profile_name"
+        android:src="@drawable/profile_design"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <LinearLayout
+        android:layout_below="@+id/profile_ui"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_1"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/my_profile"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="My Profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/linear_layout_1"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_2"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/ic_baseline_favorite_24"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/my_fav"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="My Favourites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/linear_layout_2"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_3"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/ic_baseline_notifications_active_24"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/notifications"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/linear_layout_3"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_4"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/ic_baseline_payment_24"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/payment"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_5"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/logout"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/logout"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Sign Out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
