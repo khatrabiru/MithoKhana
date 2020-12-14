@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/rlSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/rlHeader"
+        android:background="@drawable/shape_right_panel"
+        android:layout_width="220dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="520dp"/>
+
+    <LinearLayout
+        android:id="@+id/loginPanel"
+        app:layout_constraintTop_toBottomOf="@+id/rlHeader"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_login_panel"
+        android:layout_width="match_parent"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
+        android:orientation="vertical"
+        android:paddingTop="70dp"
+        android:layout_height="420dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/firstName"
+                android:hint="First Name"
+                android:inputType="text"
+                android:layout_width="150dp"
+                android:layout_height="55dp"/>
+            <EditText
+                android:layout_marginLeft="20dp"
+                android:id="@+id/lastName"
+                android:hint="Last name"
+                android:inputType="text"
+                android:layout_width="120dp"
+                android:layout_height="55dp"/>
+
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/phone"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <EditText
+            android:id="@+id/repeatPassword"
+            android:inputType="textPassword"
+            android:hint="Repeat password"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <EditText
+            android:id="@+id/Location"
+            android:hint="Address"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/loginPanel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        android:text="Sign up"
+        android:background="@drawable/shape_login_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/tvSignIn"
+        android:text="SignIn"
+        android:textSize="20sp"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rlSignUp"
+        android:textColor="@color/black"
+        android:layout_width="130dp"
+        android:textStyle="bold"
+        android:layout_height="45dp"/>
+
+    <TextView
+        android:textStyle="bold"
+        android:text="SignUp"
+        android:gravity="right"
+        android:textSize="20sp"
+        android:layout_marginRight="35dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rlSignUp"
+        android:textColor="@color/black"
+        android:layout_width="130dp"
+        android:layout_height="45dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
