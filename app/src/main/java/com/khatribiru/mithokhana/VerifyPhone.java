@@ -1,5 +1,6 @@
 package com.khatribiru.mithokhana;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,10 +8,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.khatribiru.mithokhana.Common.Common;
+
+import java.util.concurrent.TimeUnit;
 
 public class VerifyPhone extends AppCompatActivity {
     EditText verificationCode;
     Button verify;
+
+    String verificationCodeBySystem;
+    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,13 +37,88 @@ public class VerifyPhone extends AppCompatActivity {
         verificationCode = findViewById(R.id.verificationCode);
         verify = findViewById(R.id.btnVerify);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
+        sendVerificationToUser();
+
+
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // First verify then add to firebase
-                Intent intent = new Intent(VerifyPhone.this, Home.class);
-                startActivity(intent);
+
+                String code = verificationCode.getText().toString();
+                if( code == null || code.length() != 6 ) {
+                    Toast.makeText(VerifyPhone.this, "Wrong code by User", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                verifyCode(code);
             }
         });
+    }
+
+    private void sendVerificationToUser() {
+
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder( mAuth )
+                        .setPhoneNumber("+44" + Common.currentUser.getPhone())       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS)                   // Timeout and unit
+                        .setActivity(this)                                          // Activity (for callback binding)
+                        .setCallbacks(mCallbacks)                                   // OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+
+            verificationCodeBySystem = s;
+        }
+
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+            String code = phoneAuthCredential.getSmsCode();
+            if( code != null ) {
+                verifyCode(code);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+            Toast.makeText(VerifyPhone.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private void verifyCode(String codeByUser) {
+        PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verificationCodeBySystem, codeByUser);
+        signInTheUserByCredential(phoneAuthCredential);
+    }
+
+    private void signInTheUserByCredential(PhoneAuthCredential phoneAuthCredential) {
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signInWithCredential(phoneAuthCredential)
+                .addOnCompleteListener(VerifyPhone.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()) {
+
+                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
+                        } else {
+
+                            Toast.makeText(VerifyPhone.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

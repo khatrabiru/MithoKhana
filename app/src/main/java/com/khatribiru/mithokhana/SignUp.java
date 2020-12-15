@@ -80,6 +80,7 @@ public class SignUp extends AppCompatActivity {
 
                                 User newUser = new User(firstName.getText().toString(), lastName.getText().toString(), phone.getText().toString(), password.getText().toString());
                                 Common.currentUser = newUser;
+
                                 // Verify Phone Number
                                 Intent intent = new Intent(SignUp.this, VerifyPhone.class);
                                 startActivity(intent);

@@ -46,6 +46,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/firstName"
             android:hint="First Name"
+            android:text="Bir"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
@@ -53,6 +54,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/lastName"
             android:hint="Last name"
+            android:text="Khatri"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
@@ -61,6 +63,7 @@
             android:id="@+id/phone"
             android:hint="Phone Number"
             android:inputType="number"
+            android:text="7384871110"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
 
@@ -68,6 +71,7 @@
             android:id="@+id/password"
             android:inputType="textPassword"
             android:hint="Password"
+            android:text="12345"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
 
@@ -75,6 +79,7 @@
             android:id="@+id/repeatPassword"
             android:inputType="textPassword"
             android:hint="Repeat password"
+            android:text="12345"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
 
