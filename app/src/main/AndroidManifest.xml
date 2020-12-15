@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mithokhana">
-        <activity android:name=".VerifyPhone"></activity>
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".VerifyPhone" />
         <activity android:name=".SignUp" />
         <activity android:name=".Home" />
         <activity android:name=".MyProfile" />

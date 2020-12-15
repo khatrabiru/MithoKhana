@@ -49,13 +49,17 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Phone Number"
+            android:text="7384871110"
+            app:met_floatingLabel="highlight"
             android:inputType="number" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            app:met_floatingLabel="highlight"
             android:hint="Password"
+            android:text="12345"
             android:inputType="textPassword" />
 
         <LinearLayout

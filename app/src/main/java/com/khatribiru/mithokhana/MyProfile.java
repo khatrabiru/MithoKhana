@@ -2,6 +2,7 @@ package com.khatribiru.mithokhana;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +15,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyProfile extends AppCompatActivity {
 
-    TextView txtToolbar, logout, profileName, firstName, lastName, phone;
+    TextView txtToolbar, logout, profileName, firstName, lastName, phone, txtEditProfile;
     ImageView backArrow;
     CircleImageView profileImage;
     User user;
@@ -31,6 +32,7 @@ public class MyProfile extends AppCompatActivity {
         backArrow = findViewById(R.id.backArrow);
         logout = findViewById(R.id.logout);
         txtToolbar = findViewById(R.id.txtToolbar);
+        txtEditProfile = findViewById(R.id.txtEditProfile);
 
         user = Common.currentUser;
         profileName.setText( user.getFirstName() + " " + user.getLastName() );
@@ -41,6 +43,12 @@ public class MyProfile extends AppCompatActivity {
         txtToolbar.setText("My Profile");
         // Set Image: todo
 
-
+        txtEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfile.this, EditProfile.class);
+                startActivity(intent);
+            }
+        });
     }
 }
