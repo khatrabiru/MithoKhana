@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -13,6 +14,8 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            app:tint="@color/black"
+            android:id="@+id/backArrow"
             android:src="@drawable/ic_baseline_arrow_back_24"
             android:layout_alignParentLeft="true"
             android:layout_width="30dp"
@@ -29,12 +32,12 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:src="@drawable/logout"
+            android:id="@+id/logout"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#D28B62"
+            android:textColor="@color/black"
             android:text="Logout"
             android:layout_height="wrap_content"/>
 

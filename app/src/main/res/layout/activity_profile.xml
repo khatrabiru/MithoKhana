@@ -10,7 +10,7 @@
     <include layout="@layout/toolbar"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/profileImage"
         android:src="@drawable/profile_image"
         android:layout_width="120dp"
         android:layout_centerHorizontal="true"
@@ -18,9 +18,9 @@
         android:layout_height="120dp"/>
 
     <TextView
-        android:id="@+id/profile_name"
+        android:id="@+id/profileName"
         android:text="Bir Bahadur Khatri"
-        android:layout_below="@id/profile_image"
+        android:layout_below="@id/profileImage"
         android:textColor="#000"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
 
     <View
         android:id="@+id/line"
-        android:layout_below="@id/profile_name"
+        android:layout_below="@id/profileName"
         android:background="@color/black"
         android:paddingRight="8dp"
         android:layout_marginTop="60dp"
@@ -53,7 +53,7 @@
             android:layout_height="36dp"/>
 
         <TextView
-            android:id="@+id/my_profile"
+            android:id="@+id/myProfile"
             android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginLeft="20dp"
@@ -78,7 +78,7 @@
             android:layout_height="36dp"/>
 
         <TextView
-            android:id="@+id/my_fav"
+            android:id="@+id/myFav"
             android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginLeft="20dp"

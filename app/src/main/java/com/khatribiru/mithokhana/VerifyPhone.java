@@ -25,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.khatribiru.mithokhana.Common.Common;
-import com.khatribiru.mithokhana.Model.User;
 
 import java.util.concurrent.TimeUnit;
 
