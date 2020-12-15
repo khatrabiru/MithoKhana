@@ -4,14 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/grey"
     android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:src="@drawable/profile_image"
         android:layout_width="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="80dp"
         android:layout_height="120dp"/>
 
     <TextView
@@ -24,15 +27,19 @@
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <ImageView
-        android:id="@+id/profile_ui"
+
+    <View
+        android:id="@+id/line"
         android:layout_below="@id/profile_name"
-        android:src="@drawable/profile_design"
+        android:background="@color/black"
+        android:paddingRight="8dp"
+        android:layout_marginTop="60dp"
+        android:paddingLeft="8dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        android:layout_height="1dp"/>
 
     <LinearLayout
-        android:layout_below="@+id/profile_ui"
+        android:layout_below="@+id/line"
         android:orientation="horizontal"
         android:id="@+id/linear_layout_1"
         android:layout_marginTop="30dp"
@@ -127,32 +134,6 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:text="Payment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/linear_layout_5"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_marginLeft="100dp"
-            android:src="@drawable/logout"
-            android:layout_width="36dp"
-            android:layout_height="36dp"/>
-
-        <TextView
-            android:id="@+id/logout"
-            android:textSize="18sp"
-            android:textColor="#000"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:text="Sign Out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
