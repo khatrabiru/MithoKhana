@@ -36,7 +36,7 @@
         android:paddingTop="70dp"
         android:layout_height="420dp">
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/verificationCode"
             android:layout_width="160dp"
             android:layout_height="55dp"

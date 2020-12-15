@@ -43,33 +43,35 @@
         android:paddingTop="70dp"
         android:layout_height="420dp">
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/firstName"
             android:hint="First Name"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
-        <EditText
+
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/lastName"
             android:hint="Last name"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
-        <EditText
+
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/phone"
             android:hint="Phone Number"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/password"
             android:inputType="textPassword"
             android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/repeatPassword"
             android:inputType="textPassword"
             android:hint="Repeat password"

@@ -44,30 +44,52 @@
         android:paddingRight="50dp"
         app:layout_constraintTop_toBottomOf="@+id/rlHeader">
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Phone Number"
             android:inputType="number" />
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Password"
             android:inputType="textPassword" />
 
-        <TextView
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="right"
-            android:text="Forgot password?" />
+            android:layout_height="wrap_content">
+
+            <com.rey.material.widget.CheckBox
+                android:id="@+id/chkBoxRemember"
+                style="@style/Material.Drawable.CheckBox"
+                android:text="Remember me"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/txtForgotPassword"
+                android:layout_weight="1"
+                android:layout_marginLeft="15dp"
+                android:text="Forgot Password?"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSignIn"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginBottom="5dp"
