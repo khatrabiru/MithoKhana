@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent"
+    tools:context=".VerifyPhone">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/rlSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/loginPanel"
+        app:layout_constraintTop_toBottomOf="@+id/rlHeader"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/shape_login_panel"
+        android:layout_width="match_parent"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
+        android:orientation="vertical"
+        android:paddingTop="70dp"
+        android:layout_height="420dp">
+
+        <EditText
+            android:id="@+id/verificationCode"
+            android:layout_width="160dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="100dp"
+            android:hint="Verification Code"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnVerify"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/loginPanel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        android:text="Verify"
+        android:background="@drawable/shape_login_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

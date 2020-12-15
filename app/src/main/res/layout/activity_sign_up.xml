@@ -43,28 +43,18 @@
         android:paddingTop="70dp"
         android:layout_height="420dp">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/firstName"
-                android:hint="First Name"
-                android:inputType="text"
-                android:layout_width="150dp"
-                android:layout_height="55dp"/>
-            <EditText
-                android:layout_marginLeft="20dp"
-                android:id="@+id/lastName"
-                android:hint="Last name"
-                android:inputType="text"
-                android:layout_width="120dp"
-                android:layout_height="55dp"/>
-
-
-        </LinearLayout>
-
-
+        <EditText
+            android:id="@+id/firstName"
+            android:hint="First Name"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+        <EditText
+            android:id="@+id/lastName"
+            android:hint="Last name"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
         <EditText
             android:id="@+id/phone"
             android:hint="Phone Number"
@@ -86,15 +76,10 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"/>
 
-        <EditText
-            android:id="@+id/Location"
-            android:hint="Address"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"/>
-
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnSignUp"
         android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="@id/loginPanel"
         app:layout_constraintStart_toStartOf="parent"
