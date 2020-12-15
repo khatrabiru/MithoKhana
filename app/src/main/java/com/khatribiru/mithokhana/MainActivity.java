@@ -110,12 +110,14 @@ public class MainActivity extends AppCompatActivity {
                                     finish();
 
                                 } else {
-
-                                    Toast.makeText(MainActivity.this, "Sign In Failed", Toast.LENGTH_SHORT).show();
+                                    mDialog.dismiss();
+                                    Toast.makeText(MainActivity.this, "Sign In Failed, Check Password", Toast.LENGTH_SHORT).show();
+                                    return;
                                 }
                             } else {
-
-                                Toast.makeText(MainActivity.this, "User doesn't exists", Toast.LENGTH_SHORT).show();
+                                mDialog.dismiss();
+                                Toast.makeText(MainActivity.this, "User doesn't exists, Check phone number", Toast.LENGTH_SHORT).show();
+                                return;
                             }
                         }
 

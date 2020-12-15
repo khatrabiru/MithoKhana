@@ -3,6 +3,7 @@ package com.khatribiru.mithokhana;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.khatribiru.mithokhana.Common.Common;
+import com.khatribiru.mithokhana.Model.User;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +35,8 @@ public class VerifyPhone extends AppCompatActivity {
 
     String verificationCodeBySystem;
     FirebaseAuth mAuth;
+    DatabaseReference table_user;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,10 +118,32 @@ public class VerifyPhone extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()) {
+                            // Let's Init Firebase
+                            database = FirebaseDatabase.getInstance();
+                            table_user= database.getReference("user");
 
-                            Intent intent = new Intent(getApplicationContext(), Home.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+                            ProgressDialog mDialog = new ProgressDialog(VerifyPhone.this);
+                            mDialog.setMessage("Please wait...");
+                            mDialog.show();
+
+                            table_user.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    mDialog.dismiss();
+
+                                    table_user.child(Common.currentUser.getPhone()).setValue(Common.currentUser);
+
+                                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
 
                         } else {
 
