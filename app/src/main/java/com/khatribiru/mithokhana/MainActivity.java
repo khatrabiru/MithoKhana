@@ -2,15 +2,23 @@ package com.khatribiru.mithokhana;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Paper.init(this);
-        Paper.book().destroy();
+//        Paper.book().destroy(); // just comment out this line not to use Paper.
 
         // Check if user details remembered
         String user = Paper.book().read(Common.USER_KEY);
@@ -60,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         // Let's Init Firebase
         database = FirebaseDatabase.getInstance();
         table_user= database.getReference("user");
-
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override

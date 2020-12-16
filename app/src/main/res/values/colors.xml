@@ -11,4 +11,9 @@
     <color name="colorPrimaryDark">#FFF</color>
     <color name="colorAccent">#D81B60</color>
 
+<!--    For map-->
+    <color name="colorPrimaryMap">#35b64f</color>
+    <color name="colorPrimaryDarkMap">#289b35</color>
+    <color name="colorAccentMap">#FF4081</color>
+
 </resources>

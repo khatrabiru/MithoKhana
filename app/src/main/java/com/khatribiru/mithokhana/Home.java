@@ -2,19 +2,34 @@ package com.khatribiru.mithokhana;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.khatribiru.mithokhana.Common.Common;
 import com.khatribiru.mithokhana.Model.Menu;
 import com.khatribiru.mithokhana.ViewHolder.NonVegMenuAdapter;
@@ -39,12 +54,15 @@ public class Home extends AppCompatActivity {
     List< String > vegMenuIds = new ArrayList<>();
     List< String > nonVegMenuIds = new ArrayList<>();
 
+    MaterialToolbar appBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         bottomNavigationView = findViewById(R.id.navigation);
+        appBar = (MaterialToolbar) findViewById(R.id.topAppBar);
 
         database = FirebaseDatabase.getInstance();
         menu = database.getReference("menu");
@@ -54,6 +72,60 @@ public class Home extends AppCompatActivity {
             vegMenuIds.add( Integer.toString(i) );
             nonVegMenuIds.add( Integer.toString(1) );
         }
+
+        appBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ContextCompat.checkSelfPermission( Home.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)  {
+                    Intent intent  = new Intent(Home.this, ChangeMyLocation.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+
+                    // Ask for Permission
+                    Dexter.withContext( Home.this )
+                            .withPermission( Manifest.permission.ACCESS_FINE_LOCATION )
+                            .withListener(new PermissionListener() {
+                                @Override
+                                public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                                    Intent intent  = new Intent(Home.this, ChangeMyLocation.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                @Override
+                                public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+                                    if (permissionDeniedResponse.isPermanentlyDenied()) {
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+                                        builder.setTitle("Permission Denied")
+                                                .setMessage("Permission to access device locations is permanently denied. You need to go to settings to allow the permission")
+                                                .setNegativeButton("Cancel", null)
+                                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent intent = new Intent();
+                                                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                                        intent.setData(Uri.fromParts( "package", getPackageName(), null ) );
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+
+                                        Toast.makeText(Home.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+
+                                @Override
+                                public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+
+                                }
+                            }).check();
+
+                }
+            }
+        });
 
         loadMenu();
 

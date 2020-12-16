@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.khatribiru.mithokhana">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mithokhana">
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".ChangeMyLocation"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyATl5IivjnVixBP4d05Cmhrs1kfidHcYZc" />
+
+        <activity android:name=".EditProfile" />
         <activity android:name=".VerifyPhone" />
         <activity android:name=".SignUp" />
         <activity android:name=".Home" />

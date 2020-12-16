@@ -7,8 +7,31 @@
     android:background="@drawable/grey"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Your address"
+            app:titleTextColor="@color/colorPrimaryDarkMap"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="#FAFAFA"
+            style="Widget.MaterialComponents.Toolbar.Surface"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/app_bar_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

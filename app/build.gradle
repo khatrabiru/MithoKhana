@@ -31,6 +31,10 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.libraries.places:places:2.4.0'
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.karumi:dexter:6.2.2'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'io.paperdb:paperdb:2.7.1'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'

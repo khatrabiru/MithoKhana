@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
 
+
     <LinearLayout
         android:id="@+id/rlHeader"
         android:layout_width="match_parent"
@@ -49,43 +50,44 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Phone Number"
+            android:inputType="number"
             android:text="7384871110"
-            app:met_floatingLabel="highlight"
-            android:inputType="number" />
+            app:met_floatingLabel="highlight" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:met_floatingLabel="highlight"
             android:hint="Password"
+            android:inputType="textPassword"
             android:text="12345"
-            android:inputType="textPassword" />
+            app:met_floatingLabel="highlight" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:weightSum="2">
 
             <com.rey.material.widget.CheckBox
                 android:id="@+id/chkBoxRemember"
                 style="@style/Material.Drawable.CheckBox"
-                android:text="Remember me"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:gravity="center_vertical"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Remember me"
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/txtForgotPassword"
-                android:layout_weight="1"
-                android:layout_marginLeft="15dp"
-                android:text="Forgot Password?"
-                android:textColor="@color/black"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:text="Forgot Password?"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
