@@ -28,6 +28,17 @@ public class User {
         this.FavouriteMenus = null;
     }
 
+    public User(String firstName, String lastName, String phone, String password, String image, android.location.Location location, List<Food> favouriteFoods, List<Menu> favouriteMenus) {
+        FirstName = firstName;
+        LastName = lastName;
+        Phone = phone;
+        Password = password;
+        Image = image;
+        Location = location;
+        FavouriteFoods = favouriteFoods;
+        FavouriteMenus = favouriteMenus;
+    }
+
     public String getFirstName() {
         return FirstName;
     }

@@ -84,6 +84,7 @@ public class SignUp extends AppCompatActivity {
                                 // Verify Phone Number
                                 Intent intent = new Intent(SignUp.this, VerifyPhone.class);
                                 startActivity(intent);
+
                             }
                         }
 

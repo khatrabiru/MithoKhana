@@ -31,6 +31,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-storage'
     implementation 'com.google.android.libraries.places:places:2.4.0'
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'

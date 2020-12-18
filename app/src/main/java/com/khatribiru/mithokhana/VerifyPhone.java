@@ -132,10 +132,19 @@ public class VerifyPhone extends AppCompatActivity {
 
                                     table_user.child(Common.currentUser.getPhone()).setValue(Common.currentUser);
 
-                                    Intent intent = new Intent(getApplicationContext(), Home.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    finish();
+
+                                    if( Common.flagForSignUp == true ) {
+                                        Intent intent = new Intent(getApplicationContext(), Home.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                    } else {
+                                        Toast.makeText(VerifyPhone.this, "Update profile!!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity( intent );
+                                    }
+
                                 }
 
                                 @Override
