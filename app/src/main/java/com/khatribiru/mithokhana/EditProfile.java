@@ -27,6 +27,7 @@ import com.google.firebase.storage.UploadTask;
 import com.khatribiru.mithokhana.Common.Common;
 import com.khatribiru.mithokhana.Model.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
@@ -74,7 +75,11 @@ public class EditProfile extends AppCompatActivity {
 
         user = Common.currentUser;
 
-        // Also change picture
+        if( !Common.currentUser.getImage().isEmpty() ) {
+
+            Picasso.with(getBaseContext()).load( Common.currentUser.getImage() )
+                    .into( profileImage );
+        }
         logout.setVisibility(View.GONE);
         firstName.setText( user.getFirstName() );
         lastName.setText( user.getLastName() );

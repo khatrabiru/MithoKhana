@@ -9,11 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.khatribiru.mithokhana.Common.Common;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
     TextView myProfile, txtToolbar, logout, profileName;
     ImageView backArrow;
+    CircleImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,14 @@ public class Profile extends AppCompatActivity {
 
         txtToolbar = findViewById(R.id.txtToolbar);
         txtToolbar.setText("Account");
+
+        profileImage = findViewById(R.id.profileImage);
+
+        if( !Common.currentUser.getImage().isEmpty() ) {
+
+            Picasso.with(getBaseContext()).load( Common.currentUser.getImage() )
+                    .into( profileImage );
+        }
 
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override

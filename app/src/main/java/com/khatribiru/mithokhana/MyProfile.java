@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.khatribiru.mithokhana.Common.Common;
 import com.khatribiru.mithokhana.Model.User;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,7 +42,12 @@ public class MyProfile extends AppCompatActivity {
         phone.setText( user.getPhone() );
 
         txtToolbar.setText("My Profile");
-        // Set Image: todo
+
+        if( !Common.currentUser.getImage().isEmpty() ) {
+
+            Picasso.with(getBaseContext()).load( Common.currentUser.getImage() )
+                    .into( profileImage );
+        }
 
         txtEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
