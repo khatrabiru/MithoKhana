@@ -10,6 +10,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -35,8 +37,10 @@ import com.khatribiru.mithokhana.Model.Menu;
 import com.khatribiru.mithokhana.ViewHolder.NonVegMenuAdapter;
 import com.khatribiru.mithokhana.ViewHolder.VegMenuAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Home extends AppCompatActivity {
 
@@ -55,6 +59,7 @@ public class Home extends AppCompatActivity {
     List< String > nonVegMenuIds = new ArrayList<>();
 
     MaterialToolbar appBar;
+    Geocoder geocoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,40 @@ public class Home extends AppCompatActivity {
         for(int i = 1; i <= 7; i++ ) {
             vegMenuIds.add( Integer.toString(i) );
             nonVegMenuIds.add( Integer.toString(1) );
+        }
+
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+        if( Common.currentUser.getLocation() != null ) {
+            double lat = Common.currentUser.getLocation().get(0);
+            double lng = Common.currentUser.getLocation().get(1);
+            try {
+                List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
+
+                String fullAddress = "";
+                String address = addresses.get(0).getAddressLine(0);
+                fullAddress += address;
+
+                String city = addresses.get(0).getLocality();
+                if(city != null) fullAddress += ", " + city;
+
+                String state = addresses.get(0).getAdminArea();
+                if(state != null) fullAddress += ", " + state;
+
+                String country = addresses.get(0).getCountryName();
+                if(country != null) fullAddress += ", " + country;
+
+                String postalCode = addresses.get(0).getPostalCode();
+                if(postalCode != null) fullAddress += ", " + postalCode;
+
+                String knownName = addresses.get(0).getFeatureName();
+                if(knownName != null) fullAddress += ", " + knownName;
+
+                appBar.setTitle(fullAddress);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         appBar.setOnClickListener(new View.OnClickListener() {

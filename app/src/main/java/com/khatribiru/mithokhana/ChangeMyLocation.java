@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -47,12 +49,17 @@ import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.khatribiru.mithokhana.Common.Common;
+import com.khatribiru.mithokhana.Model.User;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -60,13 +67,12 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private PlacesClient placesClient;
     private List<AutocompletePrediction> predictionList;
-
-
     private Location mLastKnownLocation;
     private LocationCallback locationCallback;
 
     private MaterialSearchBar materialSearchBar;
     private View mapView;
+    private Button btnSave;
 
     private final float DEFAULT_ZOOM = 18;
 
@@ -74,6 +80,7 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
     private static int UPDATE_INTERVAL = 10000;
     private static int FASTEST_INTERVAL = 5000;
     private static int DISPLACEMENT = 10;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +88,7 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_change_my_location);
 
         materialSearchBar = findViewById(R.id.searchBar);
+        btnSave = findViewById(R.id.btnSave);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(ChangeMyLocation.this);
@@ -90,6 +98,9 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
         Places.initialize(ChangeMyLocation.this, "AIzaSyATl5IivjnVixBP4d05Cmhrs1kfidHcYZc");
         placesClient = Places.createClient(this);
         AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
+
+        user = Common.currentUser;
+
 
         materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
@@ -105,11 +116,7 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
 
             @Override
             public void onButtonClicked(int buttonCode) {
-                if( buttonCode == MaterialSearchBar.BUTTON_NAVIGATION ) {
-
-                    // Opening or closing a navigation drawer
-
-                } else if( buttonCode == MaterialSearchBar.BUTTON_BACK ) {
+                if( buttonCode == MaterialSearchBar.BUTTON_BACK ) {
                     materialSearchBar.closeSearch();
                 }
             }
@@ -233,6 +240,28 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
 
             }
         });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference table_user= database.getReference("user");
+
+                List<Double> myLocation = new ArrayList<>();
+
+                myLocation.add( mMap.getCameraPosition().target.latitude );
+                myLocation.add( mMap.getCameraPosition().target.longitude );
+
+                table_user.child( user.getPhone() ).child("location").setValue( myLocation );
+                Common.currentUser.setLocation( myLocation );
+
+                Intent intent = new Intent(ChangeMyLocation.this, Home.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @SuppressLint("MissingPermission")
@@ -311,7 +340,6 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
     @SuppressLint("MissingPermission")
     private void getDeviceLocation() {
 
-        System.out.println("GetDeviceLocation called");
 
         mFusedLocationProviderClient.getLastLocation()
                 .addOnCompleteListener(new OnCompleteListener<Location>() {
@@ -323,8 +351,8 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
                             mLastKnownLocation = task.getResult();
 
                             if( mLastKnownLocation != null ) {
-
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( new LatLng( mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude() ), DEFAULT_ZOOM));
+                                LatLng latLng = new LatLng( mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( latLng , DEFAULT_ZOOM));
 
                             } else {
 
@@ -343,7 +371,8 @@ public class ChangeMyLocation extends AppCompatActivity implements OnMapReadyCal
                                         }
 
                                         mLastKnownLocation = locationResult.getLastLocation();
-                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( new LatLng( mLastKnownLocation.getLongitude(), mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                                        LatLng latLng = new LatLng( mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( latLng, DEFAULT_ZOOM));
                                         mFusedLocationProviderClient.removeLocationUpdates(locationCallback);
                                     }
                                 };

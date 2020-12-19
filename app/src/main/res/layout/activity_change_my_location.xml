@@ -32,8 +32,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
-
     <com.mancj.materialsearchbar.MaterialSearchBar
         style="@style/MaterialSearchBarLight"
         app:mt_speechMode="false"

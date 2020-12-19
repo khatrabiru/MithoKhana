@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                                 mDialog.dismiss();
                                 // Get user Information
                                 User user = snapshot.child(phone.getText().toString()).getValue(User.class);
-                                user.setPhone(phone.getText().toString());
 
                                 if ( user.getPassword().equals( password.getText().toString() ) ) {
 

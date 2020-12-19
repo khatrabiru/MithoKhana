@@ -1,7 +1,5 @@
 package com.khatribiru.mithokhana.Model;
 
-import android.location.Location;
-
 import java.util.List;
 
 public class User {
@@ -10,25 +8,14 @@ public class User {
     private String Phone;
     private String Password;
     private String Image;
-    private Location Location;
+    private List<Double> Location;
     private List< Food > FavouriteFoods;
     private List< Menu > FavouriteMenus;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String phone, String password) {
-        FirstName = firstName;
-        LastName = lastName;
-        Phone = phone;
-        Password = password;
-        this.Image = "";
-        this.Location = null;
-        this.FavouriteFoods = null;
-        this.FavouriteMenus = null;
-    }
-
-    public User(String firstName, String lastName, String phone, String password, String image, android.location.Location location, List<Food> favouriteFoods, List<Menu> favouriteMenus) {
+    public User(String firstName, String lastName, String phone, String password, String image, List<Double> location, List<Food> favouriteFoods, List<Menu> favouriteMenus) {
         FirstName = firstName;
         LastName = lastName;
         Phone = phone;
@@ -79,11 +66,11 @@ public class User {
         Image = image;
     }
 
-    public android.location.Location getLocation() {
+    public List<Double> getLocation() {
         return Location;
     }
 
-    public void setLocation(android.location.Location location) {
+    public void setLocation(List<Double> location) {
         Location = location;
     }
 
