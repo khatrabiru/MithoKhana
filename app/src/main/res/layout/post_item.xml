@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white">
+
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
+            android:src="@drawable/profile_image"
+            android:layout_width="45dp"
+            app:civ_border_color="@color/quantum_black_100"
+            app:civ_border_width="1dp"
+            android:layout_height="45dp"/>
+
+        
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imgProfile"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/name"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/black"
+                android:text="Bir Bahadur Khatri"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/gray_1"
+                android:text="11 hrs"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/rl1"
+        android:id="@+id/status"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/black"
+        android:text="Getting ready to prepare food by myself."
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_below="@id/status"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/back_food"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"/>
+
+    <RelativeLayout
+        android:id="@+id/lr2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="2dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/love" />
+
+            <TextView
+                android:id="@+id/totalLoves"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="18"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lr3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lr2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="12dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iconLove"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/love_before" />
+
+            <ImageView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/iconComment"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/comment" />
+
+            <ImageView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/iconShare"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/share" />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lr4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lr3"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/totalComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 comments"
+            android:textColor="@color/colorPrimaryDarkMap"
+            android:textStyle="bold"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

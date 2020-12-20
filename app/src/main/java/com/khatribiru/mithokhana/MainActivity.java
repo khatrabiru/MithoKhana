@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( MainActivity.this, EsewaPayment.class );
+                Intent intent = new Intent( MainActivity.this, SocialMedia.class );
                 startActivity(intent);
             }
         });

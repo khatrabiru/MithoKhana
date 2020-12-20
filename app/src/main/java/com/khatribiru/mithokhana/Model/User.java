@@ -89,4 +89,8 @@ public class User {
     public void setFavouriteMenus(List<Menu> favouriteMenus) {
         FavouriteMenus = favouriteMenus;
     }
+
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
 }

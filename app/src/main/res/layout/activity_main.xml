@@ -60,7 +60,7 @@
             android:layout_height="60dp"
             android:hint="Password"
             android:inputType="textPassword"
-            android:text="12345"
+            android:text="nirajan11"
             app:met_floatingLabel="highlight" />
 
         <LinearLayout

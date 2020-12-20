@@ -183,6 +183,7 @@ public class Home extends AppCompatActivity {
 
                     case R.id.nav_social:
                         // do work
+                        loadSocial();
                         return true;
 
                     case R.id.nav_account:
@@ -197,11 +198,28 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    private void loadSocial() {
+
+        if(Common.isConnectedToInternet(getBaseContext())) {
+
+            Intent intent = new Intent(Home.this, SocialMedia.class);
+            startActivity(intent);
+            finish();
+
+        } else {
+
+            Toast.makeText(Home.this,"Please check internet", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+    }
+
     private void loadProfile() {
         if(Common.isConnectedToInternet(getBaseContext())) {
 
             Intent intent = new Intent(Home.this, Profile.class);
             startActivity(intent);
+            finish();
 
         } else {
 
