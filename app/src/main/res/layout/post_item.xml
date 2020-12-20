@@ -11,13 +11,12 @@
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgProfile"
-            android:src="@drawable/profile_image"
             android:layout_width="45dp"
             app:civ_border_color="@color/quantum_black_100"
             app:civ_border_width="1dp"
@@ -55,6 +54,7 @@
     </RelativeLayout>
 
     <TextView
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/rl1"
         android:id="@+id/status"
@@ -66,10 +66,10 @@
         android:layout_height="wrap_content"/>
 
     <ImageView
+        android:layout_marginLeft="15dp"
         android:id="@+id/image"
         android:layout_below="@id/status"
         android:layout_marginTop="7dp"
-        android:src="@drawable/back_food"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:layout_width="match_parent"

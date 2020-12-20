@@ -13,9 +13,9 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.khatribiru.mithokhana.Common.Common;
-import com.khatribiru.mithokhana.Model.Comment;
+
+
 import com.khatribiru.mithokhana.Model.Post;
-import com.khatribiru.mithokhana.ViewHolder.CommentViewHolder;
 import com.khatribiru.mithokhana.ViewHolder.PostViewHolder;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +28,6 @@ public class SocialMedia extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference postList;
     FirebaseRecyclerAdapter <Post, PostViewHolder > adapter;
-    FirebaseRecyclerAdapter <Comment, CommentViewHolder> commentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +68,7 @@ public class SocialMedia extends AppCompatActivity {
                 Picasso.with(getBaseContext()).load( post.getImage() )
                         .into(postViewHolder.image);
 
-                postViewHolder.name.setText(post.getFullName() );
+                postViewHolder.name.setText(post.getPostedBy().getFullName() );
                 postViewHolder.date.setText( post.getDateAndTime() );
                 postViewHolder.status.setText( post.getStatus() );
                 postViewHolder.totalLoves.setText( post.getTotalLoves() );
@@ -78,10 +77,11 @@ public class SocialMedia extends AppCompatActivity {
                 postViewHolder.totalComments.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Start new activity
-                        Intent foodDetail = new Intent(SocialMedia.this, CommentActivity.class);
-                        foodDetail.putExtra("postId", adapter.getRef(i).getKey());
-                        startActivity(foodDetail);
+
+                        Intent intent = new Intent(SocialMedia.this, CommentActivity.class);
+                        intent.putExtra("postId", adapter.getRef(i).getKey());
+                        startActivity(intent);
+
                     }
                 });
             }

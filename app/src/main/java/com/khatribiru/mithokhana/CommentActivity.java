@@ -116,10 +116,9 @@ public class CommentActivity extends AppCompatActivity {
                 postList.child(postId).child("comments")) {
             @Override
             protected void populateViewHolder(CommentViewHolder commentViewHolder, Comment comment, int i) {
-                 // TODO : fix this why it is null???
-//                if( comment != null && comment.getCommentedBy() != null) {
-//                    commentViewHolder.name.setText( comment.getCommentedBy().getFullName() );
-//                }
+                Picasso.with(getBaseContext()).load( comment.getCommentedBy().getImage() )
+                        .into(commentViewHolder.imgProfile);
+                commentViewHolder.name.setText( comment.getCommentedBy().getFullName() );
                 commentViewHolder.comment.setText( comment.getComment() );
             }
         };
