@@ -1,9 +1,11 @@
 package com.khatribiru.mithokhana.Model;
 
+
 import java.util.List;
 
 public class Menu {
 
+    private String id;
     private String Name;                 // Name of the Menu
     private String Type;                 // Veg or Non-veg
     private String Price;                // Price in NRS: sum of prices of all foods in the menu
@@ -11,24 +13,15 @@ public class Menu {
     private String Description;          // Short info about Menu, 4-5 words
     private String RatingSum;            // Sum of ratings
     private String RatingCount;          // Number of individual reviews
-    private List < Review > Reviews;     // All of the Individual Reviews
+    private List< Review > Reviews;      // All of the Individual Reviews
     private List< Food > Foods;          // List of Foods in this Menu
-    private List< String > Favourites;   // List of individual phone numbers who marked Favourite
+    private List< User > Favourites;   // List of individual phone numbers who marked Favourite
 
     public Menu() {
     }
 
-    public Menu(String name, String type, String price, String image, String description, String ratingSum, String ratingCount) {
-        Name = name;
-        Type = type;
-        Price = price;
-        Image = image;
-        Description = description;
-        RatingSum = ratingSum;
-        RatingCount = ratingCount;
-    }
-
-    public Menu(String name, String type, String price, String image, String description, String ratingSum, String ratingCount, List<Review> reviews, List<Food> foods, List<String> favourites) {
+    public Menu(String id, String name, String type, String price, String image, String description, String ratingSum, String ratingCount, List<Review> reviews, List<Food> foods, List<User> favourites) {
+        this.id = id;
         Name = name;
         Type = type;
         Price = price;
@@ -39,6 +32,14 @@ public class Menu {
         Reviews = reviews;
         Foods = foods;
         Favourites = favourites;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -113,11 +114,11 @@ public class Menu {
         Foods = foods;
     }
 
-    public List<String> getFavourites() {
+    public List<User> getFavourites() {
         return Favourites;
     }
 
-    public void setFavourites(List<String> favourites) {
+    public void setFavourites(List<User> favourites) {
         Favourites = favourites;
     }
 

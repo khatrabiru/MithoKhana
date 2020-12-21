@@ -1,21 +1,24 @@
 package com.khatribiru.mithokhana.Model;
 
+
 import java.util.List;
 
 public class User {
+    private String id;
     private String FirstName;
     private String LastName;
     private String Phone;
     private String Password;
     private String Image;
-    private List<Double> Location;
-    private List< Food > FavouriteFoods;
+    private List< Double > Location;
+    private List< String > FavouriteFoods;
     private List< Menu > FavouriteMenus;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String phone, String password, String image, List<Double> location, List<Food> favouriteFoods, List<Menu> favouriteMenus) {
+    public User(String id, String firstName, String lastName, String phone, String password, String image, List<Double> location, List<String> favouriteFoods, List<Menu> favouriteMenus) {
+        this.id = id;
         FirstName = firstName;
         LastName = lastName;
         Phone = phone;
@@ -24,6 +27,14 @@ public class User {
         Location = location;
         FavouriteFoods = favouriteFoods;
         FavouriteMenus = favouriteMenus;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -74,11 +85,11 @@ public class User {
         Location = location;
     }
 
-    public List<Food> getFavouriteFoods() {
+    public List<String> getFavouriteFoods() {
         return FavouriteFoods;
     }
 
-    public void setFavouriteFoods(List<Food> favouriteFoods) {
+    public void setFavouriteFoods(List<String> favouriteFoods) {
         FavouriteFoods = favouriteFoods;
     }
 

@@ -1,22 +1,23 @@
 package com.khatribiru.mithokhana.Model;
 
-import java.util.Date;
 import java.util.List;
 
 public class Post {
+    private String id;
     private String PostId;
     private User PostedBy;
     private String Status;
     private String Image;
     private String TotalLoves;
     private String TotalComments;
-    private Date CreatedDate;
-    private List< Comment > Comments;
+    private String CreatedDate;
+    private Comment Comments;
 
     public Post() {
     }
 
-    public Post(String postId, User postedBy, String status, String image, String totalLoves, String totalComments, Date createdDate, List<Comment> comments) {
+    public Post(String id, String postId, User postedBy, String status, String image, String totalLoves, String totalComments, String createdDate, Comment comments) {
+        this.id = id;
         PostId = postId;
         PostedBy = postedBy;
         Status = status;
@@ -25,6 +26,14 @@ public class Post {
         TotalComments = totalComments;
         CreatedDate = createdDate;
         Comments = comments;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPostId() {
@@ -75,26 +84,22 @@ public class Post {
         TotalComments = totalComments;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return CreatedDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         CreatedDate = createdDate;
     }
 
-    public List<Comment> getComments() {
+    public Comment getComments() {
         return Comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(Comment comments) {
         Comments = comments;
     }
 
-    public String getDateAndTime() {
-        // Complete this later: TODO
-        return "11 hours";
-    }
     public String getFullName() {
         return this.PostedBy.getFullName();
     }

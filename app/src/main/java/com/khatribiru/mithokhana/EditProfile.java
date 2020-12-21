@@ -100,6 +100,7 @@ public class EditProfile extends AppCompatActivity {
                     imageUrl = user.getImage();
                 }
                 changedUser = new User(
+                        user.getId(),
                         firstName.getText().toString(),
                         lastName.getText().toString(),
                         phone.getText().toString(),

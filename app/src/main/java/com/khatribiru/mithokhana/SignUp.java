@@ -84,14 +84,15 @@ public class SignUp extends AppCompatActivity {
                                 mDialog.dismiss();
 
                                 User newUser = new User(
+                                        phone.getText().toString(),
                                         firstName.getText().toString(),
                                         lastName.getText().toString(),
                                         phone.getText().toString(),
                                         password.getText().toString(),
                                         "",
-                                        new ArrayList<Double>(),
-                                        new ArrayList<Food>(),
-                                        new ArrayList<Menu>());
+                                        null,
+                                        null,
+                                        null);
                                 Common.currentUser = newUser;
 
                                 // Verify Phone Number

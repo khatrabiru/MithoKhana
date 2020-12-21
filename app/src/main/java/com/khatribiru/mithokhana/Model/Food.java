@@ -3,6 +3,7 @@ package com.khatribiru.mithokhana.Model;
 import java.util.List;
 
 public class Food {
+    private String id;
     private String Name;                 // Name of the Food
     private String Type;                 // Veg or Non-veg
     private String Price;                // Price in NRS
@@ -10,13 +11,15 @@ public class Food {
     private String Description;          // Description of Food
     private String RatingSum;            // Sum of ratings
     private String RatingCount;          // Number of individual reviews
-    private List< Review > Reviews;      // All of the Individual Reviews
-    private List< String > Favourites;   // List of individual phone numbers who marked Favourite
+    private List< Review > Reviews;
+    private List< User > Favourites;
 
     public Food() {
     }
 
-    public Food(String name, String type, String price, String image, String description, String ratingSum, String ratingCount, List<Review> reviews, List<String> favourites) {
+
+    public Food(String id, String name, String type, String price, String image, String description, String ratingSum, String ratingCount, List<Review> reviews, List<User> favourites) {
+        this.id = id;
         Name = name;
         Type = type;
         Price = price;
@@ -26,6 +29,14 @@ public class Food {
         RatingCount = ratingCount;
         Reviews = reviews;
         Favourites = favourites;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -92,11 +103,11 @@ public class Food {
         Reviews = reviews;
     }
 
-    public List<String> getFavourites() {
+    public List<User> getFavourites() {
         return Favourites;
     }
 
-    public void setFavourites(List<String> favourites) {
+    public void setFavourites(List<User> favourites) {
         Favourites = favourites;
     }
 

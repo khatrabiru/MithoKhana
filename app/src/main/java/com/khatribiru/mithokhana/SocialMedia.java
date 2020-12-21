@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.khatribiru.mithokhana.Common.Common;
 
 
+import com.khatribiru.mithokhana.Interface.ItemClickListener;
 import com.khatribiru.mithokhana.Model.Post;
 import com.khatribiru.mithokhana.ViewHolder.PostViewHolder;
 import com.squareup.picasso.Picasso;
@@ -69,19 +70,17 @@ public class SocialMedia extends AppCompatActivity {
                         .into(postViewHolder.image);
 
                 postViewHolder.name.setText(post.getPostedBy().getFullName() );
-                postViewHolder.date.setText( post.getDateAndTime() );
+                postViewHolder.date.setText( post.getCreatedDate() );
                 postViewHolder.status.setText( post.getStatus() );
                 postViewHolder.totalLoves.setText( post.getTotalLoves() );
                 postViewHolder.totalComments.setText( post.getTotalComments() + " Comments" );
 
-                postViewHolder.totalComments.setOnClickListener(new View.OnClickListener() {
+                postViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
-                    public void onClick(View v) {
-
+                    public void onClick(View view, int position, boolean isLongClick) {
                         Intent intent = new Intent(SocialMedia.this, CommentActivity.class);
-                        intent.putExtra("postId", adapter.getRef(i).getKey());
+                        intent.putExtra("postId", adapter.getRef(position).getKey());
                         startActivity(intent);
-
                     }
                 });
             }

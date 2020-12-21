@@ -12,11 +12,12 @@ import com.khatribiru.mithokhana.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PostViewHolder extends RecyclerView.ViewHolder {
+public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public CircleImageView imgProfile;
     public TextView name, date, status, totalLoves, totalComments;
     public ImageView image;
+
 
     private ItemClickListener itemClickListener;
 
@@ -36,11 +37,12 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         totalComments = itemView.findViewById(R.id.totalComments);
         image = itemView.findViewById(R.id.image);
 
-        totalComments.setOnClickListener(this::onClick);
+        totalComments.setOnClickListener(this);
     }
 
+
+    @Override
     public void onClick(View v) {
         itemClickListener.onClick(v, getAdapterPosition(), false);
     }
-
 }

@@ -22,6 +22,7 @@
             android:layout_height="45dp"/>
 
 
+
         <LinearLayout
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
@@ -179,6 +180,51 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#fff"
+        android:padding="4dp"
+        android:layout_alignParentBottom="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/imgProfile1"
+            android:layout_width="25dp"
+            app:civ_border_color="@color/quantum_black_100"
+            android:src="@drawable/profile_image"
+            app:civ_border_width="1dp"
+            android:layout_height="25dp"/>
+
+        <EditText
+            android:layout_toRightOf="@id/imgProfile1"
+            android:hint="Add a comment"
+            android:id="@+id/addComment"
+            android:layout_toLeftOf="@id/post"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/post"
+            android:text="Post"
+            android:textColor="#0000FF"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+
     </RelativeLayout>
 
 

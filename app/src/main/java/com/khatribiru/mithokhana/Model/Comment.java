@@ -3,43 +3,47 @@ package com.khatribiru.mithokhana.Model;
 import java.util.Date;
 
 public class Comment {
-    private String CommentId;
-    private Date CommentDate;
-    private User CommentedBy;
+    private String id;
+    private String CommentDate;
+    private String CommenterUserId;
     private String Comment;
+    private String CommenterName;
+    private String CommenterImageLink;
 
     public Comment() {
     }
 
-    public Comment(String commentId, Date commentDate, User commentedBy, String comment) {
-        CommentId = commentId;
+    public Comment(String id, String commentDate, String commenterUserId, String comment, String commenterName, String commenterImageLink) {
+        this.id = id;
         CommentDate = commentDate;
-        CommentedBy = commentedBy;
+        CommenterUserId = commenterUserId;
         Comment = comment;
+        CommenterName = commenterName;
+        CommenterImageLink = commenterImageLink;
     }
 
-    public String getCommentId() {
-        return CommentId;
+    public String getId() {
+        return id;
     }
 
-    public void setCommentId(String commentId) {
-        CommentId = commentId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Date getCommentDate() {
+    public String getCommentDate() {
         return CommentDate;
     }
 
-    public void setCommentDate(Date commentDate) {
+    public void setCommentDate(String commentDate) {
         CommentDate = commentDate;
     }
 
-    public User getCommentedBy() {
-        return CommentedBy;
+    public String getCommenterUserId() {
+        return CommenterUserId;
     }
 
-    public void setCommentedBy(User commentedBy) {
-        CommentedBy = commentedBy;
+    public void setCommenterUserId(String commenterUserId) {
+        CommenterUserId = commenterUserId;
     }
 
     public String getComment() {
@@ -48,5 +52,21 @@ public class Comment {
 
     public void setComment(String comment) {
         Comment = comment;
+    }
+
+    public String getCommenterName() {
+        return CommenterName;
+    }
+
+    public void setCommenterName(String commenterName) {
+        CommenterName = commenterName;
+    }
+
+    public String getCommenterImageLink() {
+        return CommenterImageLink;
+    }
+
+    public void setCommenterImageLink(String commenterImageLink) {
+        CommenterImageLink = commenterImageLink;
     }
 }

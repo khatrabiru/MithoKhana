@@ -102,6 +102,8 @@ public class MenuDetail extends AppCompatActivity {
                 foodViewHolder.price.setText(food.getPrice() +" Rs");
                 foodViewHolder.ratingBar.setRating(food.getRating());
 
+//                String foodId = food.get
+
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

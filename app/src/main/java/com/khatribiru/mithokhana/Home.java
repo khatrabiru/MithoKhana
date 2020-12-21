@@ -73,10 +73,11 @@ public class Home extends AppCompatActivity {
         menu = database.getReference("menu");
 
         // Weekly menu list
-        for(int i = 1; i <= 7; i++ ) {
-            vegMenuIds.add( Integer.toString(i) );
-            nonVegMenuIds.add( Integer.toString(1) );
-        }
+        vegMenuIds.add( Integer.toString(123) );
+        vegMenuIds.add( Integer.toString(321) );
+
+        nonVegMenuIds.add( Integer.toString(321) );
+        nonVegMenuIds.add( Integer.toString(123) );
 
         geocoder = new Geocoder(this, Locale.getDefault());
 
@@ -239,18 +240,8 @@ public class Home extends AppCompatActivity {
                     menus = new ArrayList<>();
 
                     for(String menuId: vegMenuIds) {
-
-                        Menu newMenu = new Menu(
-                                snapshot.child(menuId).child("name").getValue().toString(),
-                                snapshot.child(menuId).child("type").getValue().toString(),
-                                snapshot.child(menuId).child("price").getValue().toString(),
-                                snapshot.child(menuId).child("image").getValue().toString(),
-                                snapshot.child(menuId).child("description").getValue().toString(),
-                                snapshot.child(menuId).child("ratingSum").getValue().toString(),
-                                snapshot.child(menuId).child("ratingCount").getValue().toString()
-                        );
+                        Menu newMenu = snapshot.child(menuId).getValue(Menu.class);
                         menus.add(newMenu);
-
                     }
 
                     vegMenuAdapter = new VegMenuAdapter(menus, Home.this, vegMenuIds);
@@ -274,16 +265,7 @@ public class Home extends AppCompatActivity {
                     menus = new ArrayList<>();
 
                     for(String menuId: nonVegMenuIds) {
-
-                        Menu newMenu = new Menu(
-                                snapshot.child(menuId).child("name").getValue().toString(),
-                                snapshot.child(menuId).child("type").getValue().toString(),
-                                snapshot.child(menuId).child("price").getValue().toString(),
-                                snapshot.child(menuId).child("image").getValue().toString(),
-                                snapshot.child(menuId).child("description").getValue().toString(),
-                                snapshot.child(menuId).child("ratingSum").getValue().toString(),
-                                snapshot.child(menuId).child("ratingCount").getValue().toString()
-                        );
+                        Menu newMenu = snapshot.child(menuId).getValue(Menu.class);
                         menus.add(newMenu);
 
                     }
