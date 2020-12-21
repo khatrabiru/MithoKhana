@@ -38,7 +38,7 @@ public class CommentActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter <Comment, CommentViewHolder> adapter;
 
     CircleImageView imgProfile, imgProfile1;
-    TextView name, date, status, totalLoves, totalComments, post;
+    TextView name, date, status, post;
     ImageView image;
     EditText addComment;
 
@@ -58,8 +58,6 @@ public class CommentActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         date = findViewById(R.id.date);
         status = findViewById(R.id.status);
-        totalLoves = findViewById(R.id.totalLoves);
-        totalComments = findViewById(R.id.totalComments);
         image = findViewById(R.id.image);
         post = findViewById(R.id.post);
         addComment = findViewById(R.id.addComment);
@@ -89,12 +87,14 @@ public class CommentActivity extends AppCompatActivity {
 
         }
 
-        post.setClickable( !addComment.getText().toString().isEmpty() );
-
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String postComment = addComment.getText().toString();
+                if( postComment.isEmpty() ) {
+                    Toast.makeText(CommentActivity.this, "Please enter a comment first.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String id = String.valueOf(System.currentTimeMillis());
                 Comment commentNew = new Comment( id, id, Common.currentUser.getId(), postComment, Common.currentUser.getFullName(), Common.currentUser.getImage() );
 
@@ -128,8 +128,6 @@ public class CommentActivity extends AppCompatActivity {
                 name.setText(currentPost.getFullName() );
                 date.setText( currentPost.getCreatedDate() );
                 status.setText( currentPost.getStatus() );
-                totalLoves.setText( currentPost.getTotalLoves() );
-                totalComments.setText( currentPost.getTotalComments() + " Comments" );
                 loadComments();
             }
 

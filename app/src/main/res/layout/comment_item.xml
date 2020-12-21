@@ -8,8 +8,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="12dp">
 
         <LinearLayout
@@ -18,16 +16,16 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgProfile"
-                android:layout_width="20dp"
+                android:layout_width="25dp"
                 android:src="@drawable/profile_image"
-                android:layout_height="20dp"/>
+                android:layout_height="25dp"/>
 
             <TextView
                 android:layout_marginLeft="5dp"
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:text="Karuna Paudel"/>
 
@@ -38,7 +36,7 @@
                 android:layout_marginLeft="5dp"
                 android:text="Wow so nice! I am so proud of Mama."
                 android:textColor="@color/colorPrimaryDarkMap"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
         </LinearLayout>
 
