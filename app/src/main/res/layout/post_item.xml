@@ -69,12 +69,13 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:id="@+id/image"
+        android:src="@drawable/back_food"
         android:layout_below="@id/status"
         android:layout_marginTop="7dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:layout_width="match_parent"
-        android:layout_height="270dp"/>
+        android:layout_height="250dp"/>
 
     <RelativeLayout
         android:id="@+id/lr2"

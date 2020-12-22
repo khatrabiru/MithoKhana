@@ -1,5 +1,6 @@
 package com.khatribiru.mithokhana;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,13 +11,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.khatribiru.mithokhana.Common.Common;
 
 
 import com.khatribiru.mithokhana.Interface.ItemClickListener;
 import com.khatribiru.mithokhana.Model.Post;
+import com.khatribiru.mithokhana.Model.User;
 import com.khatribiru.mithokhana.ViewHolder.PostViewHolder;
 import com.squareup.picasso.Picasso;
 
@@ -75,16 +80,105 @@ public class SocialMedia extends AppCompatActivity {
                 postViewHolder.totalLoves.setText( post.getTotalLoves() );
                 postViewHolder.totalComments.setText( post.getTotalComments() + " Comments" );
 
+                changeLoveIcon(adapter.getRef(i).getKey(), postViewHolder);
+
                 postViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
+
+                        String postId = adapter.getRef(position).getKey();
+
+                        if( view.getId() == R.id.iconLove ) {
+
+                            try {
+
+                                loveClicked(postId, postViewHolder);
+                                recreate();
+
+                            }catch (Exception e){
+
+                                Toast.makeText(SocialMedia.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            return;
+                        }
+
                         Intent intent = new Intent(SocialMedia.this, CommentActivity.class);
-                        intent.putExtra("postId", adapter.getRef(position).getKey());
+                        intent.putExtra("postId", postId);
                         startActivity(intent);
                     }
                 });
             }
         };
         recyclerView.setAdapter(adapter);
+    }
+
+    private void changeLoveIcon(String postId, PostViewHolder postViewHolder) {
+
+        // Let's Init Firebase
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference table_posts = database.getReference("posts");
+
+        table_posts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(postId).child("loves").child( Common.currentUser.getPhone() ).exists() ) {
+
+                    //  loved this post
+                    postViewHolder.iconLove.setImageResource(R.drawable.love);
+
+                } else {
+                    postViewHolder.iconLove.setImageResource(R.drawable.love_before);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return;
+    }
+
+    private void loveClicked(String postId, PostViewHolder postViewHolder) {
+
+        // Let's Init Firebase
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference table_posts = database.getReference("posts");
+
+        table_posts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(postId).child("loves").child( Common.currentUser.getPhone() ).exists() ) {
+
+                    // already loved this post, lets unlike
+                    postViewHolder.iconLove.setImageResource(R.drawable.love_before);
+                    table_posts.child(postId).child("loves").child( Common.currentUser.getPhone() ).removeValue();
+                    String oldLovesCount = snapshot.child(postId).child("totalLoves").getValue().toString() ;
+                    String newLovesCount = String.valueOf( Integer.parseInt( oldLovesCount ) - 1 );
+                    table_posts.child(postId).child("totalLoves").setValue( newLovesCount );
+
+                } else {
+                    // New love
+                    table_posts.child(postId).child("loves").child( Common.currentUser.getPhone() ).setValue( Common.currentUser.getPhone()  );
+                    String oldLovesCount = "0";
+
+                    if( snapshot.child(postId).child("totalLoves").exists() ) {
+                        oldLovesCount =  snapshot.child(postId).child("totalLoves").getValue().toString();
+                        if(oldLovesCount.isEmpty()) oldLovesCount = "0";
+                    }
+
+                    String newLovesCount = String.valueOf( Integer.parseInt( oldLovesCount ) + 1 );
+                    table_posts.child(postId).child("totalLoves").setValue( newLovesCount );
+                    postViewHolder.iconLove.setImageResource(R.drawable.love);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return;
     }
 }

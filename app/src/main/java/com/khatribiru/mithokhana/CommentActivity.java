@@ -44,6 +44,7 @@ public class CommentActivity extends AppCompatActivity {
 
     String postId = "";
     Post currentPost;
+    int totalComments = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,25 +91,30 @@ public class CommentActivity extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String postComment = addComment.getText().toString();
                 if( postComment.isEmpty() ) {
+
                     Toast.makeText(CommentActivity.this, "Please enter a comment first.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 String id = String.valueOf(System.currentTimeMillis());
                 Comment commentNew = new Comment( id, id, Common.currentUser.getId(), postComment, Common.currentUser.getFullName(), Common.currentUser.getImage() );
 
                 try {
+
                     postList.child(postId).child("comments").child( id ).setValue( commentNew );
+                    postList.child(postId).child("totalComments").setValue( String.valueOf( totalComments + 1 ) );
                     Toast.makeText(CommentActivity.this, "Comment posted", Toast.LENGTH_SHORT).show();
                     addComment.setText("");
                     loadPost();
+
                 }catch (Exception e){
                     Toast.makeText(CommentActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
     private void loadPost() {
@@ -128,6 +134,7 @@ public class CommentActivity extends AppCompatActivity {
                 name.setText(currentPost.getFullName() );
                 date.setText( currentPost.getCreatedDate() );
                 status.setText( currentPost.getStatus() );
+                totalComments = currentPost.getTotalCommentsInteger();
                 loadComments();
             }
 

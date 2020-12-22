@@ -42,7 +42,7 @@
             <TextView
                 android:id="@+id/date"
                 android:fontFamily="sans-serif"
-                android:textColor="@color/gray_1"
+                android:textColor="@color/black"
                 android:text="11 hrs"
                 android:textSize="10sp"
                 android:layout_width="wrap_content"
@@ -68,17 +68,18 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:id="@+id/image"
+        android:src="@drawable/back_food"
         android:layout_below="@id/status"
         android:layout_marginTop="7dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:layout_width="match_parent"
-        android:layout_height="255dp"/>
+        android:layout_height="250dp"/>
 
     <View
         android:id="@+id/line"
         android:layout_below="@id/image"
-        android:background="@color/grey"
+        android:background="@color/black"
         android:layout_marginTop="6dp"
         android:paddingLeft="8dp"
         android:layout_width="match_parent"
@@ -94,10 +95,11 @@
         android:layout_marginTop="15dp">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:scrollbars="vertical"
             android:id="@+id/recyclerComment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:layout_height="match_parent"/>
+
     </RelativeLayout>
 
 

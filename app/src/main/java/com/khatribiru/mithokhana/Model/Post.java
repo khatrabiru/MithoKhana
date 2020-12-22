@@ -1,5 +1,6 @@
 package com.khatribiru.mithokhana.Model;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Post {
@@ -11,12 +12,13 @@ public class Post {
     private String TotalLoves;
     private String TotalComments;
     private String CreatedDate;
-    private Comment Comments;
+    private HashMap<String, Comment> Comments;
+    private HashMap<String, String> Loves;
 
     public Post() {
     }
 
-    public Post(String id, String postId, User postedBy, String status, String image, String totalLoves, String totalComments, String createdDate, Comment comments) {
+    public Post(String id, String postId, User postedBy, String status, String image, String totalLoves, String totalComments, String createdDate, HashMap<String, Comment>  comments, HashMap<String, String> loves) {
         this.id = id;
         PostId = postId;
         PostedBy = postedBy;
@@ -26,6 +28,7 @@ public class Post {
         TotalComments = totalComments;
         CreatedDate = createdDate;
         Comments = comments;
+        Loves = loves;
     }
 
     public String getId() {
@@ -92,15 +95,28 @@ public class Post {
         CreatedDate = createdDate;
     }
 
-    public Comment getComments() {
+    public HashMap<String, Comment>  getComments() {
         return Comments;
     }
 
-    public void setComments(Comment comments) {
+    public void setComments(HashMap<String, Comment>  comments) {
         Comments = comments;
+    }
+
+    public HashMap<String, String> getLoves() {
+        return Loves;
+    }
+
+    public void setLoves(HashMap<String, String> loves) {
+        Loves = loves;
     }
 
     public String getFullName() {
         return this.PostedBy.getFullName();
+    }
+
+    public int getTotalCommentsInteger() {
+        if( this.getTotalComments().isEmpty()) return 0;
+        return Integer.parseInt( this.getTotalComments() );
     }
 }

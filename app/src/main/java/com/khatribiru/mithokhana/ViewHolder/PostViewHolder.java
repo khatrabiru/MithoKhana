@@ -16,7 +16,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     public CircleImageView imgProfile;
     public TextView name, date, status, totalLoves, totalComments;
-    public ImageView image, iconComment;
+    public ImageView image, iconComment, iconLove;
 
 
     private ItemClickListener itemClickListener;
@@ -24,7 +24,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
-
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -37,10 +36,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         totalComments = itemView.findViewById(R.id.totalComments);
         image = itemView.findViewById(R.id.image);
         iconComment = itemView.findViewById(R.id.iconComment);
+        iconLove = itemView.findViewById(R.id.iconLove);
 
         totalComments.setOnClickListener(this);
         iconComment.setOnClickListener(this);
-
+        iconLove.setOnClickListener(this);
     }
 
 
