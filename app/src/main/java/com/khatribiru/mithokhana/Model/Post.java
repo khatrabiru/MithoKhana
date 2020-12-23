@@ -1,34 +1,17 @@
 package com.khatribiru.mithokhana.Model;
 
-import java.util.HashMap;
-import java.util.List;
+import java.io.Serializable;
 
-public class Post {
+public class Post implements Serializable {
     private String id;
-    private String PostId;
-    private User PostedBy;
     private String Status;
     private String Image;
-    private String TotalLoves;
-    private String TotalComments;
     private String CreatedDate;
-    private HashMap<String, Comment> Comments;
-    private HashMap<String, String> Loves;
+    private String PosterUserId;
+    private String PosterName;
+    private String PosterImageLink;
 
     public Post() {
-    }
-
-    public Post(String id, String postId, User postedBy, String status, String image, String totalLoves, String totalComments, String createdDate, HashMap<String, Comment>  comments, HashMap<String, String> loves) {
-        this.id = id;
-        PostId = postId;
-        PostedBy = postedBy;
-        Status = status;
-        Image = image;
-        TotalLoves = totalLoves;
-        TotalComments = totalComments;
-        CreatedDate = createdDate;
-        Comments = comments;
-        Loves = loves;
     }
 
     public String getId() {
@@ -37,22 +20,6 @@ public class Post {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getPostId() {
-        return PostId;
-    }
-
-    public void setPostId(String postId) {
-        PostId = postId;
-    }
-
-    public User getPostedBy() {
-        return PostedBy;
-    }
-
-    public void setPostedBy(User postedBy) {
-        PostedBy = postedBy;
     }
 
     public String getStatus() {
@@ -71,22 +38,6 @@ public class Post {
         Image = image;
     }
 
-    public String getTotalLoves() {
-        return TotalLoves;
-    }
-
-    public void setTotalLoves(String totalLoves) {
-        TotalLoves = totalLoves;
-    }
-
-    public String getTotalComments() {
-        return TotalComments;
-    }
-
-    public void setTotalComments(String totalComments) {
-        TotalComments = totalComments;
-    }
-
     public String getCreatedDate() {
         return CreatedDate;
     }
@@ -95,28 +46,27 @@ public class Post {
         CreatedDate = createdDate;
     }
 
-    public HashMap<String, Comment>  getComments() {
-        return Comments;
+    public String getPosterUserId() {
+        return PosterUserId;
     }
 
-    public void setComments(HashMap<String, Comment>  comments) {
-        Comments = comments;
+    public void setPosterUserId(String posterUserId) {
+        PosterUserId = posterUserId;
     }
 
-    public HashMap<String, String> getLoves() {
-        return Loves;
+    public String getPosterName() {
+        return PosterName;
     }
 
-    public void setLoves(HashMap<String, String> loves) {
-        Loves = loves;
+    public void setPosterName(String posterName) {
+        PosterName = posterName;
     }
 
-    public String getFullName() {
-        return this.PostedBy.getFullName();
+    public String getPosterImageLink() {
+        return PosterImageLink;
     }
 
-    public int getTotalCommentsInteger() {
-        if( this.getTotalComments().isEmpty()) return 0;
-        return Integer.parseInt( this.getTotalComments() );
+    public void setPosterImageLink(String posterImageLink) {
+        PosterImageLink = posterImageLink;
     }
 }

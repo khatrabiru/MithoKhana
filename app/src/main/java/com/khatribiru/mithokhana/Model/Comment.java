@@ -1,7 +1,5 @@
 package com.khatribiru.mithokhana.Model;
 
-import java.util.Date;
-
 public class Comment {
     private String id;
     private String CommentDate;

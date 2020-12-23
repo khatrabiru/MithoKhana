@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ import com.khatribiru.mithokhana.Common.Common;
 
 
 import com.khatribiru.mithokhana.Interface.ItemClickListener;
+import com.khatribiru.mithokhana.Model.Comment;
+import com.khatribiru.mithokhana.Model.Loves;
 import com.khatribiru.mithokhana.Model.Post;
 import com.khatribiru.mithokhana.Model.User;
 import com.khatribiru.mithokhana.ViewHolder.PostViewHolder;
@@ -33,7 +37,10 @@ public class SocialMedia extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference postList;
-    FirebaseRecyclerAdapter <Post, PostViewHolder > adapter;
+
+    FirebaseRecyclerAdapter <Post, PostViewHolder > adapterPost;
+    PostViewHolder pstViewHolder;
+    String ref = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,7 @@ public class SocialMedia extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+
         if(Common.isConnectedToInternet(getBaseContext())) {
             loadListPost();
 
@@ -62,74 +70,74 @@ public class SocialMedia extends AppCompatActivity {
 
     private void loadListPost() {
 
-        adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class,
+        adapterPost = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class,
                 R.layout.post_item,
                 PostViewHolder.class,
                 postList) {
             @Override
             protected void populateViewHolder(PostViewHolder postViewHolder, Post post, int i) {
 
-                Picasso.with(getBaseContext()).load( post.getPostedBy().getImage() )
+                Picasso.with(getBaseContext()).load( post.getPosterImageLink() )
                         .into(postViewHolder.imgProfile);
                 Picasso.with(getBaseContext()).load( post.getImage() )
                         .into(postViewHolder.image);
 
-                postViewHolder.name.setText(post.getPostedBy().getFullName() );
+                postViewHolder.name.setText(post.getPosterName() );
                 postViewHolder.date.setText( post.getCreatedDate() );
                 postViewHolder.status.setText( post.getStatus() );
-                postViewHolder.totalLoves.setText( post.getTotalLoves() );
-                postViewHolder.totalComments.setText( post.getTotalComments() + " Comments" );
 
-                changeLoveIcon(adapter.getRef(i).getKey(), postViewHolder);
+                postViewHolder.updateLoveCount(adapterPost.getRef(i).getKey(), postViewHolder);
+                postViewHolder.updateCommentCount(adapterPost.getRef(i).getKey(), postViewHolder);
 
                 postViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
-                        String postId = adapter.getRef(position).getKey();
+                        String postId = adapterPost.getRef(position).getKey();
 
                         if( view.getId() == R.id.iconLove ) {
 
-                            try {
+                            postViewHolder.loveCLicked(postId, postViewHolder);
 
-                                loveClicked(postId, postViewHolder);
-                                recreate();
-
-                            }catch (Exception e){
-
-                                Toast.makeText(SocialMedia.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
-                            return;
+                        } else {
+                            pstViewHolder = postViewHolder;
+                            ref = postId;
+                            Intent intent = new Intent(SocialMedia.this, CommentActivity.class);
+                            intent.putExtra("post", post);
+                            onPause();
+                            startActivity(intent);
                         }
-
-                        Intent intent = new Intent(SocialMedia.this, CommentActivity.class);
-                        intent.putExtra("postId", postId);
-                        startActivity(intent);
                     }
                 });
             }
         };
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterPost);
+
     }
 
-    private void changeLoveIcon(String postId, PostViewHolder postViewHolder) {
+    private void updateCommentCount(String postId, PostViewHolder postViewHolder) {
 
         // Let's Init Firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_posts = database.getReference("posts");
+        final DatabaseReference table_comments = database.getReference("comments").child(postId);
 
-        table_posts.addListenerForSingleValueEvent(new ValueEventListener() {
+        table_comments.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(postId).child("loves").child( Common.currentUser.getPhone() ).exists() ) {
 
-                    //  loved this post
-                    postViewHolder.iconLove.setImageResource(R.drawable.love);
+                int count = (int)snapshot.getChildrenCount();
 
+
+                if(count == 0) {
+                    postViewHolder.totalComments.setVisibility(View.GONE);
+                } else if( count == 1 ) {
+
+                    postViewHolder.totalComments.setText( "1 Comment");
                 } else {
-                    postViewHolder.iconLove.setImageResource(R.drawable.love_before);
+
+                    postViewHolder.totalComments.setText( String.valueOf(count) +  " Comments");
                 }
+
             }
 
             @Override
@@ -140,45 +148,11 @@ public class SocialMedia extends AppCompatActivity {
         return;
     }
 
-    private void loveClicked(String postId, PostViewHolder postViewHolder) {
-
-        // Let's Init Firebase
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_posts = database.getReference("posts");
-
-        table_posts.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(postId).child("loves").child( Common.currentUser.getPhone() ).exists() ) {
-
-                    // already loved this post, lets unlike
-                    postViewHolder.iconLove.setImageResource(R.drawable.love_before);
-                    table_posts.child(postId).child("loves").child( Common.currentUser.getPhone() ).removeValue();
-                    String oldLovesCount = snapshot.child(postId).child("totalLoves").getValue().toString() ;
-                    String newLovesCount = String.valueOf( Integer.parseInt( oldLovesCount ) - 1 );
-                    table_posts.child(postId).child("totalLoves").setValue( newLovesCount );
-
-                } else {
-                    // New love
-                    table_posts.child(postId).child("loves").child( Common.currentUser.getPhone() ).setValue( Common.currentUser.getPhone()  );
-                    String oldLovesCount = "0";
-
-                    if( snapshot.child(postId).child("totalLoves").exists() ) {
-                        oldLovesCount =  snapshot.child(postId).child("totalLoves").getValue().toString();
-                        if(oldLovesCount.isEmpty()) oldLovesCount = "0";
-                    }
-
-                    String newLovesCount = String.valueOf( Integer.parseInt( oldLovesCount ) + 1 );
-                    table_posts.child(postId).child("totalLoves").setValue( newLovesCount );
-                    postViewHolder.iconLove.setImageResource(R.drawable.love);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if( !ref.isEmpty() ){
+            pstViewHolder.updateCommentCount(ref, pstViewHolder);
+        }
     }
 }
