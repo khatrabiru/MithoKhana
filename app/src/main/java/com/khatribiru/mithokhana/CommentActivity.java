@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,8 +23,10 @@ import com.khatribiru.mithokhana.Common.Common;
 import com.khatribiru.mithokhana.Model.Comment;
 import com.khatribiru.mithokhana.Model.Post;
 import com.khatribiru.mithokhana.ViewHolder.CommentViewHolder;
+import com.khatribiru.mithokhana.ViewHolder.PostViewHolder;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -34,17 +37,16 @@ public class CommentActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 
     FirebaseDatabase database;
-    DatabaseReference postList;
+    DatabaseReference commentList;
+
     FirebaseRecyclerAdapter <Comment, CommentViewHolder> adapter;
 
     CircleImageView imgProfile, imgProfile1;
-    TextView name, date, status, post;
+    TextView name, date, status, postText;
     ImageView image;
     EditText addComment;
 
-    String postId = "";
-    Post currentPost;
-    int totalComments = 0;
+    Post post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +55,14 @@ public class CommentActivity extends AppCompatActivity {
 
         // Firebase
         database = FirebaseDatabase.getInstance();
-        postList = database.getReference("posts");
+        commentList = database.getReference("comments");
 
         imgProfile = findViewById(R.id.imgProfile );
         name = findViewById(R.id.name);
         date = findViewById(R.id.date);
         status = findViewById(R.id.status);
         image = findViewById(R.id.image);
-        post = findViewById(R.id.post);
+        postText = findViewById(R.id.post);
         addComment = findViewById(R.id.addComment);
         imgProfile1 = findViewById(R.id.imgProfile1);
 
@@ -71,10 +73,10 @@ public class CommentActivity extends AppCompatActivity {
 
 
         if( getIntent() != null ) {
-            postId = getIntent().getStringExtra("postId");
+            post = (Post) getIntent().getSerializableExtra("post");
         }
 
-        if( !postId.isEmpty() && postId != null ) {
+        if( !post.getId().isEmpty() && post.getId() != null ) {
 
             if(Common.isConnectedToInternet(getBaseContext())) {
                 loadPost();
@@ -85,10 +87,9 @@ public class CommentActivity extends AppCompatActivity {
                 return;
 
             }
-
         }
 
-        post.setOnClickListener(new View.OnClickListener() {
+        postText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -104,11 +105,9 @@ public class CommentActivity extends AppCompatActivity {
 
                 try {
 
-                    postList.child(postId).child("comments").child( id ).setValue( commentNew );
-                    postList.child(postId).child("totalComments").setValue( String.valueOf( totalComments + 1 ) );
+                    commentList.child(post.getId()).child( id ).setValue( commentNew );
                     Toast.makeText(CommentActivity.this, "Comment posted", Toast.LENGTH_SHORT).show();
                     addComment.setText("");
-                    loadPost();
 
                 }catch (Exception e){
                     Toast.makeText(CommentActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -118,39 +117,26 @@ public class CommentActivity extends AppCompatActivity {
     }
 
     private void loadPost() {
-        postList.child(postId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                currentPost = snapshot.getValue(Post.class);
+        Picasso.with(getBaseContext()).load( post.getPosterImageLink() )
+                .into(imgProfile);
+        Picasso.with(getBaseContext()).load( Common.currentUser.getImage() )
+                .into(imgProfile1);
+        Picasso.with(getBaseContext()).load( post.getImage() )
+                .into(image);
 
-                Picasso.with(getBaseContext()).load( currentPost.getPostedBy().getImage() )
-                        .into(imgProfile);
-                Picasso.with(getBaseContext()).load( currentPost.getPostedBy().getImage() )
-                        .into(imgProfile1);
-                Picasso.with(getBaseContext()).load( currentPost.getImage() )
-                        .into(image);
-
-                name.setText(currentPost.getFullName() );
-                date.setText( currentPost.getCreatedDate() );
-                status.setText( currentPost.getStatus() );
-                totalComments = currentPost.getTotalCommentsInteger();
-                loadComments();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        name.setText( post.getPosterName() );
+        date.setText( post.getCreatedDate() );
+        status.setText( post.getStatus() );
+        loadComments();
     }
 
     private void loadComments() {
 
-        adapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class,
+            adapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class,
                 R.layout.comment_item,
                 CommentViewHolder.class,
-                postList.child(postId).child("comments")) {
+                commentList.child(post.getId())) {
             @Override
             protected void populateViewHolder(CommentViewHolder commentViewHolder, Comment comment, int i) {
                 Picasso.with(getBaseContext()).load( comment.getCommenterImageLink() )
