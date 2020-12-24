@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".PostActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:background="?android:attr/windowBackground"
+        android:id="@+id/bar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:background="?android:attr/windowBackground"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/close"
+                    android:src="@drawable/ic_baseline_close_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" />
+
+
+                <TextView
+                    android:id="@+id/post"
+                    android:text="Post"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:textColor="#684D39"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/status"
+            android:hint="What's on your mind?"
+            android:maxLines="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:id="@+id/image"
+            android:src="@drawable/back_food"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -14,6 +14,16 @@ public class Post implements Serializable {
     public Post() {
     }
 
+    public Post(String id, String status, String image, String createdDate, String posterUserId, String posterName, String posterImageLink) {
+        this.id = id;
+        Status = status;
+        Image = image;
+        CreatedDate = createdDate;
+        PosterUserId = posterUserId;
+        PosterName = posterName;
+        PosterImageLink = posterImageLink;
+    }
+
     public String getId() {
         return id;
     }

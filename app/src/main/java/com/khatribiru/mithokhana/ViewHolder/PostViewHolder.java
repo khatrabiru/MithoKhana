@@ -131,6 +131,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                     postViewHolder.totalComments.setVisibility(View.GONE);
                 } else if( count == 1 ) {
 
+                    postViewHolder.totalComments.setVisibility(View.VISIBLE);
                     postViewHolder.totalComments.setText( "1 Comment");
                 } else {
 
