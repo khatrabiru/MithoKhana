@@ -79,4 +79,41 @@ public class Post implements Serializable {
     public void setPosterImageLink(String posterImageLink) {
         PosterImageLink = posterImageLink;
     }
+
+    public String friendlyTimeDiff(long timeDifferenceMilliseconds) {
+        long diffSeconds = timeDifferenceMilliseconds / 1000;
+        long diffMinutes = timeDifferenceMilliseconds / (60 * 1000);
+        long diffHours = timeDifferenceMilliseconds / (60 * 60 * 1000);
+        long diffDays = timeDifferenceMilliseconds / (60 * 60 * 1000 * 24);
+        long diffWeeks = timeDifferenceMilliseconds / (60 * 60 * 1000 * 24 * 7);
+        long diffMonths = (long) (timeDifferenceMilliseconds / (60 * 60 * 1000 * 24 * 30.41666666));
+        long diffYears = timeDifferenceMilliseconds / ((long)60 * 60 * 1000 * 24 * 365);
+
+        if (diffMinutes < 1) {
+            return diffSeconds + " seconds";
+        } else if (diffHours < 1) {
+            return diffMinutes + " min";
+        } else if (diffDays < 1) {
+            return diffHours + " hrs";
+        } else if (diffWeeks < 1) {
+            return diffDays + " days";
+        } else if (diffMonths < 1) {
+            return diffWeeks + " weeks";
+        } else if (diffYears < 1) {
+            return diffMonths + " months";
+        } else {
+            return diffYears + " years";
+        }
+    }
+
+    public String getTimeDifference() {
+
+        if( this.getCreatedDate() == null || this.getCreatedDate().isEmpty() ){
+            return "11 hrs";
+        }
+
+        long diff = System.currentTimeMillis();
+        diff -= Long.parseLong(this.getCreatedDate());
+        return this.friendlyTimeDiff(diff);
+    }
 }

@@ -126,7 +126,7 @@ public class CommentActivity extends AppCompatActivity {
                 .into(image);
 
         name.setText( post.getPosterName() );
-        date.setText( post.getCreatedDate() );
+        date.setText( post.getTimeDifference() );
         status.setText( post.getStatus() );
         loadComments();
     }

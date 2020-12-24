@@ -96,7 +96,7 @@ public class SocialMedia extends AppCompatActivity {
                         .into(postViewHolder.image);
 
                 postViewHolder.name.setText(post.getPosterName() );
-                postViewHolder.date.setText( post.getCreatedDate() );
+                postViewHolder.date.setText( post.getTimeDifference() );
                 postViewHolder.status.setText( post.getStatus() );
 
                 postViewHolder.updateLoveCount(adapterPost.getRef(i).getKey(), postViewHolder);
