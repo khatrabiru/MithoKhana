@@ -99,8 +99,9 @@ public class MenuDetail extends AppCompatActivity {
                 foodViewHolder.name.setText(food.getName());
                 Picasso.with(getBaseContext()).load(food.getImage())
                         .into(foodViewHolder.image);
-                foodViewHolder.price.setText(food.getPrice() +" Rs");
+                foodViewHolder.price.setText(food.getPrice() +" Rs.");
                 foodViewHolder.ratingBar.setRating(food.getRating());
+                foodViewHolder.description.setText(food.getDescription());
 
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

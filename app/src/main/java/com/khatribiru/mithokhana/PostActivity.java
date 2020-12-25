@@ -52,7 +52,7 @@ public class PostActivity extends AppCompatActivity {
 
         close = findViewById(R.id.close);
         image = findViewById(R.id.image);
-        status = findViewById(R.id.status);
+        status = findViewById(R.id.status); 
         post = findViewById(R.id.post);
 
         chooseImage();

@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.khatribiru.mithokhana.Interface.ItemClickListener;
 import com.khatribiru.mithokhana.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView price, name;
+    public TextView price, name, description;
     public ImageView image;
     public RatingBar ratingBar;
 
@@ -31,6 +33,7 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         image = itemView.findViewById(R.id.image);
         price = itemView.findViewById(R.id.price);
         ratingBar = itemView.findViewById(R.id.ratingBar);
+        description = itemView.findViewById(R.id.description);
 
         itemView.setOnClickListener(this);
     }
