@@ -4,99 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/grey"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Your address"
+            android:layout_height="40dp"
+            app:title="Enter your address"
             app:titleTextColor="@color/colorPrimaryDarkMap"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
             android:background="#FAFAFA"
             style="Widget.MaterialComponents.Toolbar.Surface"
             />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <LinearLayout
+    <RelativeLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll1"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/nonVegViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:clipToPadding="false"
+            android:foregroundGravity="center"
+            android:overScrollMode="never" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/nonVegViewPager"
+            android:layout_alignTop="@id/nonVegViewPager"
+            android:layout_alignRight="@id/nonVegViewPager"
+            android:layout_alignBottom="@id/nonVegViewPager"
+            android:gravity="top|left"
+            android:layout_marginLeft="13dp"
+            android:text="Non-Veg"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/ll1"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vegViewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="290dp"
+            android:clipToPadding="false"
+            android:foregroundGravity="center"
+            android:overScrollMode="never" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/vegViewPager"
+            android:layout_alignTop="@id/vegViewPager"
+            android:layout_alignRight="@id/vegViewPager"
+            android:layout_alignBottom="@id/vegViewPager"
+            android:gravity="top|left"
+            android:layout_marginLeft="13dp"
+            android:text="Veg"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Non-Vegeterian Foods"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textSize="20sp" />
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/nonVegViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:clipToPadding="false"
-                    android:foregroundGravity="center"
-                    android:overScrollMode="never" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:text="Vegeterian Foods"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/vegViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:clipToPadding="false"
-                    android:foregroundGravity="center"
-                    android:overScrollMode="never" />
-
-            </LinearLayout>
-
-
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -109,7 +108,5 @@
         android:visibility="visible"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation" />
-
-
 
 </RelativeLayout>
