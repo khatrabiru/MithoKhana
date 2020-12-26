@@ -36,8 +36,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile(name: "eSewaSdk", ext: "aar")
+    implementation(name: "eSewaSdk", ext: "aar")
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.google.android.libraries.places:places:2.4.0'
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'

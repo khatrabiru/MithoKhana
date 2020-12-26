@@ -12,7 +12,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mithokhana">
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:replace="android:theme"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".PostActivity"/>
         <activity android:name=".CommentActivity" />
 
@@ -31,7 +33,7 @@
         <activity android:name=".Profile" />
         <activity android:name=".FoodDetail" />
         <activity android:name=".MenuDetail" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:theme="@style/Theme.Mithokhana">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,5 +41,7 @@
             </intent-filter>
         </activity>
     </application>
+
+
 
 </manifest>
