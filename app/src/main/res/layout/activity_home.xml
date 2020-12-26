@@ -50,18 +50,24 @@
             android:overScrollMode="never" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="108dp"
+            android:layout_height="28dp"
             android:layout_alignLeft="@id/nonVegViewPager"
             android:layout_alignTop="@id/nonVegViewPager"
             android:layout_alignRight="@id/nonVegViewPager"
             android:layout_alignBottom="@id/nonVegViewPager"
-            android:gravity="top|left"
-            android:layout_marginLeft="13dp"
-            android:text="Non-Veg"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="259dp"
+            android:layout_marginBottom="248dp"
+            android:background="@color/colorPrimaryDarkMap"
+            android:gravity="center_horizontal"
+            android:text="Nonveg"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
     <RelativeLayout
@@ -82,18 +88,23 @@
             android:overScrollMode="never" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="108dp"
+            android:layout_height="28dp"
             android:layout_alignLeft="@id/vegViewPager"
             android:layout_alignTop="@id/vegViewPager"
             android:layout_alignRight="@id/vegViewPager"
             android:layout_alignBottom="@id/vegViewPager"
-            android:gravity="top|left"
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="259dp"
+            android:layout_marginBottom="248dp"
+            android:background="@color/colorPrimaryDarkMap"
+            android:gravity="center_horizontal"
             android:text="Veg"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
