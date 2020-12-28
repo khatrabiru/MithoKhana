@@ -12,26 +12,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".PostActivity" android:theme="@style/Theme.Mithokhana"/>
-        <activity android:name=".CommentActivity" android:theme="@style/Theme.Mithokhana" />
+        android:theme="@style/Theme.Mithokhana">
+        <activity android:name=".PostActivity"/>
+        <activity android:name=".CommentActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyATl5IivjnVixBP4d05Cmhrs1kfidHcYZc" />
 
-        <activity android:name=".SocialMedia" android:theme="@style/Theme.Mithokhana"/>
-        <activity android:name=".EsewaPayment" android:theme="@style/Theme.Mithokhana" />
-        <activity android:name=".ChangeMyLocation" android:theme="@style/Theme.Mithokhana" />
-        <activity android:name=".EditProfile" android:theme="@style/Theme.Mithokhana" />
-        <activity android:name=".VerifyPhone" android:theme="@style/Theme.Mithokhana" />
-        <activity android:name=".SignUp" android:theme="@style/Theme.Mithokhana" />
-        <activity android:name=".Home" android:theme="@style/Theme.Mithokhana"/>
-        <activity android:name=".MyProfile" android:theme="@style/Theme.Mithokhana"/>
-        <activity android:name=".Profile" android:theme="@style/Theme.Mithokhana"/>
-        <activity android:name=".FoodDetail" android:theme="@style/Theme.Mithokhana" />
+        <activity android:name=".SocialMedia" />
+        <activity android:name=".EsewaPayment" />
+        <activity android:name=".ChangeMyLocation" />
+        <activity android:name=".EditProfile" />
+        <activity android:name=".VerifyPhone" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Home" />
+        <activity android:name=".MyProfile" />
+        <activity android:name=".Profile" />
+        <activity android:name=".FoodDetail" />
         <activity android:name=".MenuDetail" />
-        <activity android:name=".MainActivity" android:theme="@style/Theme.Mithokhana" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

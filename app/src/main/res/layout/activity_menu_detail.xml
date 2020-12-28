@@ -41,7 +41,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnCart"
+        android:id="@+id/btnAddToCart"
         android:src="@drawable/ic_baseline_add_shopping_cart_24"
         android:elevation="6dp"
         app:pressedTranslationZ="5dp"
@@ -116,18 +116,36 @@
                             android:stepSize="0.1" />
                     </LinearLayout>
 
-                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                        android:id="@+id/numberButton"
-                        android:layout_marginTop="8dp"
+                    <LinearLayout
                         android:layout_marginLeft="60dp"
-                        android:layout_marginBottom="18dp"
-                        app:backGroundColor="@color/colorAccent"
-                        android:gravity="center"
-                        app:initialNumber="1"
-                        app:finalNumber="10"
-                        android:layout_width="100dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="60dp" />
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/minus"
+                            android:src="@drawable/minus"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"/>
+
+                        <TextView
+                            android:layout_marginLeft="3dp"
+                            android:id="@+id/count"
+                            android:text="1"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_marginLeft="3dp"
+                            android:id="@+id/plus"
+                            android:src="@drawable/plus"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"/>
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/menu_description"

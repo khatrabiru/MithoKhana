@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,8 +33,8 @@ import java.util.List;
 
 public class MenuDetail extends AppCompatActivity {
 
-    TextView menu_description, menu_price;
-    ImageView menu_image;
+    TextView menu_description, menu_price, count;
+    ImageView menu_image, plus, minus;
     RatingBar ratingBar;
     Menu currentMenu;
 
@@ -45,6 +46,7 @@ public class MenuDetail extends AppCompatActivity {
     DatabaseReference menus;
     FirebaseRecyclerAdapter< Food, FoodViewHolder > adapter;
     RecyclerView.LayoutManager layoutManager;
+    FloatingActionButton btnAddToCart, btnRating;
 
 
     @Override
@@ -60,6 +62,12 @@ public class MenuDetail extends AppCompatActivity {
         menu_price = findViewById(R.id.menu_price);
 
         ratingBar = findViewById(R.id.ratingBar);
+        btnAddToCart = findViewById(R.id.btnAddToCart);
+        btnRating = findViewById(R.id.btnRating);
+        plus = findViewById(R.id.plus);
+        minus = findViewById(R.id.minus);
+        count = findViewById(R.id.count);
+
 
         recycler_menu = (RecyclerView) findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
@@ -86,6 +94,27 @@ public class MenuDetail extends AppCompatActivity {
 
             }
         }
+
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentCount = Integer.parseInt( count.getText().toString() );
+                currentCount += 1;
+                // One Id can have maximum 9 orders at a time.
+                if( currentCount > 9) currentCount = 9;
+                count.setText(String.valueOf( currentCount ));
+            }
+        });
+
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentCount = Integer.parseInt( count.getText().toString() );
+                currentCount -= 1;
+                if( currentCount < 1 ) currentCount = 1;
+                count.setText(String.valueOf( currentCount ));
+            }
+        });
     }
 
     private void loadFoods() {
