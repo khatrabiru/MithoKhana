@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mithokhana">
-        <activity android:name=".PostActivity"/>
+        <activity android:name=".Cart"></activity>
+        <activity android:name=".PostActivity" />
         <activity android:name=".CommentActivity" />
 
         <meta-data
@@ -39,7 +40,5 @@
             </intent-filter>
         </activity>
     </application>
-
-
 
 </manifest>

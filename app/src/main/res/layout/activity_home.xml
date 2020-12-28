@@ -71,6 +71,7 @@
 
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/ll2"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
@@ -108,6 +109,16 @@
 
     </RelativeLayout>
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="630dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:backgroundTint="@color/colorAccentMap"
+        android:src="@drawable/ic_baseline_shopping_cart_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"

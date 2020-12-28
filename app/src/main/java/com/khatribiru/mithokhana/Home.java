@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,6 +62,8 @@ public class Home extends AppCompatActivity {
     MaterialToolbar appBar;
     Geocoder geocoder;
 
+    FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,7 @@ public class Home extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.navigation);
         appBar = (MaterialToolbar) findViewById(R.id.topAppBar);
+        fab = findViewById(R.id.fab);
 
         database = FirebaseDatabase.getInstance();
         menu = database.getReference("menu");
@@ -81,7 +85,15 @@ public class Home extends AppCompatActivity {
 
         geocoder = new Geocoder(this, Locale.getDefault());
 
-        if( Common.currentUser.getLocation() != null ) {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cartIntent = new Intent(Home.this, Cart.class);
+                startActivity(cartIntent);
+            }
+        });
+
+        if( Common.currentUser != null && Common.currentUser.getLocation() != null ) {
             double lat = Common.currentUser.getLocation().get(0);
             double lng = Common.currentUser.getLocation().get(1);
             try {

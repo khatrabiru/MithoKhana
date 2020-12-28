@@ -23,9 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.khatribiru.mithokhana.Common.Common;
+import com.khatribiru.mithokhana.Database.Database;
 import com.khatribiru.mithokhana.Interface.ItemClickListener;
 import com.khatribiru.mithokhana.Model.Food;
 import com.khatribiru.mithokhana.Model.Menu;
+import com.khatribiru.mithokhana.Model.Order;
 import com.khatribiru.mithokhana.ViewHolder.FoodViewHolder;
 import com.squareup.picasso.Picasso;
 
@@ -113,6 +115,23 @@ public class MenuDetail extends AppCompatActivity {
                 currentCount -= 1;
                 if( currentCount < 1 ) currentCount = 1;
                 count.setText(String.valueOf( currentCount ));
+            }
+        });
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Order order = new Order(
+                        currentMenu.getImage(),
+                        currentMenu.getName(),
+                        count.getText().toString(),
+                        currentMenu.getPrice()
+                );
+
+                new Database(getBaseContext()).addToCart(order);
+                Toast.makeText(MenuDetail.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                return;
             }
         });
     }
