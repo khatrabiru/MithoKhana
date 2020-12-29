@@ -12,7 +12,13 @@ import android.widget.Toast;
 import com.esewa.android.sdk.payment.ESewaConfiguration;
 import com.esewa.android.sdk.payment.ESewaPayment;
 import com.esewa.android.sdk.payment.ESewaPaymentActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.khatribiru.mithokhana.Common.Common;
 import com.khatribiru.mithokhana.Database.Database;
+import com.khatribiru.mithokhana.Model.Order;
+
+import java.util.List;
 
 public class EsewaPayment extends AppCompatActivity {
 
@@ -59,6 +65,17 @@ public class EsewaPayment extends AppCompatActivity {
                 String s = data.getStringExtra(ESewaPayment.EXTRA_RESULT_MESSAGE);
                 Log.i("Proof of Payment", s);
                 Toast.makeText(this, "SUCCESSFUL PAYMENT", Toast.LENGTH_SHORT).show();
+
+                List<Order> newCart = new Database(this).getCarts();
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference orders  = database.getReference("orders").child(Common.currentUser.getPhone());
+
+                for(Order order:newCart) {
+
+                    orders.child(String.valueOf(System.currentTimeMillis()))
+                            .setValue( order );
+
+                }
 
                 // Delete cart
                 new Database(getBaseContext()).cleanCart();

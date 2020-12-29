@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +32,9 @@ import com.khatribiru.mithokhana.Model.Order;
 import com.khatribiru.mithokhana.ViewHolder.FoodViewHolder;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class MenuDetail extends AppCompatActivity {
 
@@ -122,11 +125,18 @@ public class MenuDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String today = df.format(new Date());
+
                 Order order = new Order(
+                        currentMenu.getId(),
                         currentMenu.getImage(),
                         currentMenu.getName(),
                         count.getText().toString(),
-                        currentMenu.getPrice()
+                        currentMenu.getPrice(),
+                        "Placed",
+                        today
                 );
 
                 new Database(getBaseContext()).addToCart(order);

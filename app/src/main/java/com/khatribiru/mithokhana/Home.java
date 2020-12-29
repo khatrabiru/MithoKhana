@@ -201,7 +201,7 @@ public class Home extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_orders:
-                        // do work
+                        loadOrders();
                         return true;
 
                     case R.id.nav_social:
@@ -221,13 +221,26 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    private void loadOrders() {
+        if(Common.isConnectedToInternet(getBaseContext())) {
+
+            Intent intent = new Intent(Home.this, OrderActivity.class);
+            startActivity(intent);
+
+        } else {
+
+            Toast.makeText(Home.this,"Please check internet", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+    }
+
     private void loadSocial() {
 
         if(Common.isConnectedToInternet(getBaseContext())) {
 
             Intent intent = new Intent(Home.this, SocialMedia.class);
             startActivity(intent);
-            finish();
 
         } else {
 
@@ -242,7 +255,6 @@ public class Home extends AppCompatActivity {
 
             Intent intent = new Intent(Home.this, Profile.class);
             startActivity(intent);
-            finish();
 
         } else {
 

@@ -43,6 +43,7 @@ public class Cart extends AppCompatActivity {
     CartAdapter adapter;
 
     int total = 0;
+    private static final int REQUEST_CODE_PAYMENT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,32 +63,18 @@ public class Cart extends AppCompatActivity {
             public void onClick(View v) {
                 if( total == 0 ) {
 
-                    Toast.makeText(Cart.this, "Please add foods to cart first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cart.this, "Please add foods to the cart first", Toast.LENGTH_SHORT).show();
 
                 } else {
 
                     Intent intent = new Intent(Cart.this, EsewaPayment.class);
                     intent.putExtra("amount", String.valueOf(total));
-                    startActivityForResult(intent, 1000);
-
+                    startActivityForResult(intent, REQUEST_CODE_PAYMENT);
                 }
                 finish();
             }
         });
         loadListFood();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1000) {
-            if (resultCode == RESULT_OK) {
-                // Delete cart
-                new Database(getBaseContext()).cleanCart();
-                Toast.makeText(Cart.this, "Order Placed!", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     private void loadListFood() {

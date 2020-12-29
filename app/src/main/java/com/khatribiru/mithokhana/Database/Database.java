@@ -23,17 +23,20 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"MenuImage", "MenuName", "Quantity", "Price"};
+        String[] sqlSelect = {"MenuId", "MenuImage", "MenuName", "Quantity", "Price", "Status", "Date"};
         String sqlTable = "OrderDetail";
         qb.setTables(sqlTable);
         Cursor c = qb.query(db, sqlSelect, null, null, null, null, null);
         final List<Order> result = new ArrayList<>();
         if(c.moveToFirst()) {
             do {
-                result.add(new Order(c.getString(c.getColumnIndex("MenuImage")),
+                result.add(new Order(c.getString(c.getColumnIndex("MenuId")),
+                        c.getString(c.getColumnIndex("MenuImage")),
                         c.getString(c.getColumnIndex("MenuName")),
                         c.getString(c.getColumnIndex("Quantity")),
-                        c.getString(c.getColumnIndex("Price")))
+                        c.getString(c.getColumnIndex("Price")),
+                        c.getString(c.getColumnIndex("Status")),
+                        c.getString(c.getColumnIndex("Date")))
                 );
             } while (c.moveToNext());
         }
@@ -42,11 +45,14 @@ public class Database extends SQLiteAssetHelper {
 
     public void addToCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(MenuImage,MenuName,Quantity,Price) VALUES('%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO OrderDetail(MenuId,MenuImage,MenuName,Quantity,Price,Status,Date) VALUES('%s','%s','%s','%s','%s','%s','%s');",
+                order.getMenuId(),
                 order.getMenuImage(),
                 order.getMenuName(),
                 order.getQuantity(),
-                order.getPrice());
+                order.getPrice(),
+                order.getStatus(),
+                order.getDate());
         db.execSQL(query);
     }
 
