@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.khatribiru.mithokhana.Common.Common;
+import com.khatribiru.mithokhana.Interface.ItemClickListener;
 import com.khatribiru.mithokhana.Model.Order;
 import com.khatribiru.mithokhana.ViewHolder.OrderViewHolder;
 import com.squareup.picasso.Picasso;
@@ -58,6 +61,17 @@ public class OrderActivity extends AppCompatActivity {
 
                 orderViewHolder.status.setText( order.getStatus() );
                 orderViewHolder.date.setText( order.getDate() );
+
+                orderViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+
+                        Intent menuDetail = new Intent(OrderActivity.this, MenuDetail.class);
+                        menuDetail.putExtra("menuId", order.getMenuId());
+                        startActivity(menuDetail);
+
+                    }
+                });
             }
         };
 
