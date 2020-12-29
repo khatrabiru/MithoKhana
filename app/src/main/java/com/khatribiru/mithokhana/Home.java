@@ -34,7 +34,9 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.khatribiru.mithokhana.Common.Common;
+import com.khatribiru.mithokhana.Database.Database;
 import com.khatribiru.mithokhana.Model.Menu;
+import com.khatribiru.mithokhana.Model.Order;
 import com.khatribiru.mithokhana.ViewHolder.NonVegMenuAdapter;
 import com.khatribiru.mithokhana.ViewHolder.VegMenuAdapter;
 
@@ -88,8 +90,16 @@ public class Home extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                List<Order> cart = new Database(Home.this).getCarts();
+
+                if( cart.isEmpty() ) {
+                    Toast.makeText(Home.this, "Please add foods to cart first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Intent cartIntent = new Intent(Home.this, Cart.class);
                 startActivity(cartIntent);
+                return;
             }
         });
 

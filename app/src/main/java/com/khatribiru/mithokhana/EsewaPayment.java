@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.esewa.android.sdk.payment.ESewaConfiguration;
 import com.esewa.android.sdk.payment.ESewaPayment;
 import com.esewa.android.sdk.payment.ESewaPaymentActivity;
+import com.khatribiru.mithokhana.Database.Database;
 
 public class EsewaPayment extends AppCompatActivity {
 
@@ -21,26 +22,24 @@ public class EsewaPayment extends AppCompatActivity {
 
     private static final String MERCHANT_ID = "JB0BBQ4aD0UqIThFJwAKBgAXEUkEGQUBBAwdOgABHD4DChwUAB0R";
     private static final String MERCHANT_SECRET_KEY = "BhwIWQQADhIYSxILExMcAgFXFhcOBwAKBgAXEQ==";
-    Button button10;
+    String amount = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_esewa_payment);
 
         eSewaConfiguration = new ESewaConfiguration()
                 .clientId(MERCHANT_ID)
                 .secretKey(MERCHANT_SECRET_KEY)
                 .environment(CONFIG_ENVIRONMENT);
 
+        if( getIntent() != null ) {
+            amount = getIntent().getStringExtra("amount");
+        }
 
-        button10 = findViewById(R.id.button_10);
-        button10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                makePayment("10");
-            }
-        });
+        if( !amount.isEmpty() && amount != null ) {
+            makePayment(amount);
+        }
     }
 
     private void makePayment(String amount) {
@@ -56,14 +55,25 @@ public class EsewaPayment extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_PAYMENT) {
             if (resultCode == RESULT_OK) {
+
                 String s = data.getStringExtra(ESewaPayment.EXTRA_RESULT_MESSAGE);
                 Log.i("Proof of Payment", s);
                 Toast.makeText(this, "SUCCESSFUL PAYMENT", Toast.LENGTH_SHORT).show();
+
+                // Delete cart
+                new Database(getBaseContext()).cleanCart();
+                Intent intent = new Intent(EsewaPayment.this, Home.class);
+                startActivity(intent);
+
             } else if (resultCode == RESULT_CANCELED) {
+
                 Toast.makeText(this, "Canceled By User", Toast.LENGTH_SHORT).show();
+
             } else if (resultCode == ESewaPayment.RESULT_EXTRAS_INVALID) {
+
                 String s = data.getStringExtra(ESewaPayment.EXTRA_RESULT_MESSAGE);
                 Log.i("Proof of Payment", s);
+
             }
         }
     }
