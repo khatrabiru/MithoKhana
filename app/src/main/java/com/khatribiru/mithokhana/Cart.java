@@ -58,6 +58,7 @@ public class Cart extends AppCompatActivity {
         txtTotalPrice = findViewById(R.id.total);
         btnPlace = findViewById(R.id.btnPlaceOrder);
 
+
         btnPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +87,13 @@ public class Cart extends AppCompatActivity {
         total = 0;
         for(Order order:cart) {
             total += Integer.parseInt(order.getQuantity()) * Integer.parseInt(order.getPrice());
+        }
+
+        if(total == 0) {
+
+            Intent intent = new Intent(Cart.this, Home.class);
+            startActivity(intent);
+            finish();
         }
 
         txtTotalPrice.setText("Total: " + total + " Rs.");
