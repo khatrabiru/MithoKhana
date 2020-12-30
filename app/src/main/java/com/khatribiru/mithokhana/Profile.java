@@ -15,7 +15,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
-    TextView myProfile, txtToolbar, logout, profileName;
+    TextView myProfile, txtToolbar, logout, profileName, myFav;
     ImageView backArrow;
     CircleImageView profileImage;
 
@@ -25,6 +25,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         myProfile = findViewById(R.id.myProfile);
+        myFav = findViewById(R.id.myFav);
 
         profileName = findViewById(R.id.profileName);
         profileName.setText(Common.currentUser.getFirstName() + " " + Common.currentUser.getLastName());
@@ -50,6 +51,14 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, MyProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        myFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, MyFav.class);
                 startActivity(intent);
             }
         });

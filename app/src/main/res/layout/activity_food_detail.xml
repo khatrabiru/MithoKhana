@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 app:title="Food Name"
@@ -41,6 +42,18 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnMyFav"
+        android:src="@drawable/love_before"
+        android:elevation="6dp"
+        app:pressedTranslationZ="5dp"
+        app:layout_anchor="@id/app_bar_layout"
+        app:fabSize="mini"
+        app:layout_anchorGravity="bottom|right|end"
+        app:useCompatPadding="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"

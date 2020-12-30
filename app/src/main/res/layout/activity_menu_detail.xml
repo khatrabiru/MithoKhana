@@ -35,6 +35,14 @@
                 android:src="@drawable/back_food"
                 app:layout_collapseMode="parallax" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/myFav"
+                android:layout_gravity="right"
+                android:src="@drawable/love_before"
+                app:fabSize="mini"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
@@ -148,6 +156,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:layout_marginTop="10dp"
                         android:id="@+id/menu_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

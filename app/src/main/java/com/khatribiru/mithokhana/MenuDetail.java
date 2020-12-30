@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.khatribiru.mithokhana.Common.Common;
 import com.khatribiru.mithokhana.Database.Database;
 import com.khatribiru.mithokhana.Interface.ItemClickListener;
+import com.khatribiru.mithokhana.Model.Favourite;
 import com.khatribiru.mithokhana.Model.Food;
 import com.khatribiru.mithokhana.Model.Menu;
 import com.khatribiru.mithokhana.Model.Order;
@@ -51,7 +52,7 @@ public class MenuDetail extends AppCompatActivity {
     DatabaseReference menus;
     FirebaseRecyclerAdapter< Food, FoodViewHolder > adapter;
     RecyclerView.LayoutManager layoutManager;
-    FloatingActionButton btnAddToCart, btnRating;
+    FloatingActionButton btnAddToCart, btnRating, myFav;
 
 
     @Override
@@ -69,6 +70,7 @@ public class MenuDetail extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         btnAddToCart = findViewById(R.id.btnAddToCart);
         btnRating = findViewById(R.id.btnRating);
+        myFav = findViewById(R.id.myFav);
         plus = findViewById(R.id.plus);
         minus = findViewById(R.id.minus);
         count = findViewById(R.id.count);
@@ -144,6 +146,54 @@ public class MenuDetail extends AppCompatActivity {
                 return;
             }
         });
+
+        myFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateFavButton(true);
+            }
+        });
+
+    }
+
+    private void updateFavButton(boolean flag) {
+        final DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("favourites").child(Common.currentUser.getPhone()).child(menuId);
+        favRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if( snapshot.exists() ) {
+
+                    if(flag) {
+
+                        favRef.removeValue();
+                        myFav.setImageResource(R.drawable.love_before);
+
+                    } else{
+                        myFav.setImageResource(R.drawable.love);
+                    }
+
+                } else {
+                    if(flag) {
+
+                        Favourite fav = new Favourite( menuId, currentMenu.getImage(), currentMenu.getName(), currentMenu.getPrice(), true );
+                        favRef.setValue( fav );
+                        myFav.setImageResource(R.drawable.love);
+
+                    } else {
+
+                        myFav.setImageResource(R.drawable.love_before);
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void loadFoods() {
@@ -195,6 +245,7 @@ public class MenuDetail extends AppCompatActivity {
                 menu_price.setText(currentMenu.getPrice() + " Rs");
                 ratingBar.setRating(currentRating);
                 menu_description.setText(currentMenu.getDescription());
+                updateFavButton(false);
             }
 
             @Override
