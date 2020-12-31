@@ -86,7 +86,7 @@ public class SocialMedia extends AppCompatActivity {
         adapterPost = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class,
                 R.layout.post_item,
                 PostViewHolder.class,
-                postList) {
+                postList.orderByChild("id")) {
             @Override
             protected void populateViewHolder(PostViewHolder postViewHolder, Post post, int i) {
 

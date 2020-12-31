@@ -95,10 +95,11 @@ public class PostActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
 
                                     String imageUrl = uri.toString();
-                                    String id = String.valueOf( System.currentTimeMillis() );
+                                    long curTime = System.currentTimeMillis();
+                                    String id = String.valueOf( curTime );
                                     // save to firebase
 
-                                    Post post = new Post(id,
+                                    Post post = new Post(curTime * -1,
                                             status.getText().toString(),
                                             imageUrl,
                                             id,

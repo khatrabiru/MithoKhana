@@ -3,7 +3,7 @@ package com.khatribiru.mithokhana.Model;
 import java.io.Serializable;
 
 public class Post implements Serializable {
-    private String id;
+    private long id;
     private String Status;
     private String Image;
     private String CreatedDate;
@@ -14,7 +14,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(String id, String status, String image, String createdDate, String posterUserId, String posterName, String posterImageLink) {
+    public Post(long id, String status, String image, String createdDate, String posterUserId, String posterName, String posterImageLink) {
         this.id = id;
         Status = status;
         Image = image;
@@ -24,11 +24,11 @@ public class Post implements Serializable {
         PosterImageLink = posterImageLink;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

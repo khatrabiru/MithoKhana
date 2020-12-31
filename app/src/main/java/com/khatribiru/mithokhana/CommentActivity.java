@@ -76,7 +76,7 @@ public class CommentActivity extends AppCompatActivity {
             post = (Post) getIntent().getSerializableExtra("post");
         }
 
-        if( !post.getId().isEmpty() && post.getId() != null ) {
+        if( !post.getCreatedDate().isEmpty() && post.getCreatedDate() != null ) {
 
             if(Common.isConnectedToInternet(getBaseContext())) {
                 loadPost();
@@ -105,7 +105,7 @@ public class CommentActivity extends AppCompatActivity {
 
                 try {
 
-                    commentList.child(post.getId()).child( id ).setValue( commentNew );
+                    commentList.child(post.getCreatedDate()).child( id ).setValue( commentNew );
                     Toast.makeText(CommentActivity.this, "Comment posted", Toast.LENGTH_SHORT).show();
                     addComment.setText("");
 
@@ -136,7 +136,7 @@ public class CommentActivity extends AppCompatActivity {
             adapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class,
                 R.layout.comment_item,
                 CommentViewHolder.class,
-                commentList.child(post.getId())) {
+                commentList.child(post.getCreatedDate())) {
             @Override
             protected void populateViewHolder(CommentViewHolder commentViewHolder, Comment comment, int i) {
                 Picasso.with(getBaseContext()).load( comment.getCommenterImageLink() )
