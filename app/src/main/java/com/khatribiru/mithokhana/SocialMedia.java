@@ -66,6 +66,7 @@ public class SocialMedia extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SocialMedia.this, PostActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
