@@ -79,10 +79,12 @@ public class Home extends AppCompatActivity {
         menu = database.getReference("menu");
 
         // Weekly menu list
-        vegMenuIds.add( Integer.toString(123) );
+        vegMenuIds.add( Integer.toString(4321) );
         vegMenuIds.add( Integer.toString(321) );
+        vegMenuIds.add( Integer.toString(54321) );
 
-        nonVegMenuIds.add( Integer.toString(321) );
+        nonVegMenuIds.add( Integer.toString(12345) );
+        nonVegMenuIds.add( Integer.toString(1234) );
         nonVegMenuIds.add( Integer.toString(123) );
 
         geocoder = new Geocoder(this, Locale.getDefault());
