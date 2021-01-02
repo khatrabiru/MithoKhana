@@ -98,4 +98,12 @@ public class Cart extends AppCompatActivity {
 
         txtTotalPrice.setText("Total: " + total + " Rs.");
     }
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+        Intent intent = new Intent(Cart.this, Home.class);
+        startActivity(intent);
+    }
 }

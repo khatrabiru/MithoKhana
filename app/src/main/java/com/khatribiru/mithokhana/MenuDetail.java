@@ -39,7 +39,7 @@ import java.util.Date;
 
 public class MenuDetail extends AppCompatActivity {
 
-    TextView menu_description, menu_price, count;
+    TextView menu_description, menu_price, count, menu_name;
     ImageView menu_image, plus, minus;
     RatingBar ratingBar;
     Menu currentMenu;
@@ -66,6 +66,7 @@ public class MenuDetail extends AppCompatActivity {
         menu_image = findViewById(R.id.menu_image);
         menu_description = findViewById(R.id.menu_description);
         menu_price = findViewById(R.id.menu_price);
+        menu_name = findViewById(R.id.menu_name);
 
         ratingBar = findViewById(R.id.ratingBar);
         btnAddToCart = findViewById(R.id.btnAddToCart);
@@ -215,8 +216,9 @@ public class MenuDetail extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         // Start new activity
+                        Food newFood = adapter.getItem(position);
                         Intent foodDetail = new Intent(MenuDetail.this, FoodDetail.class);
-                        foodDetail.putExtra("foodId", adapter.getRef(position).getKey());
+                        foodDetail.putExtra("foodId", newFood.getId());
                         startActivity(foodDetail);
                     }
                 });
@@ -242,7 +244,8 @@ public class MenuDetail extends AppCompatActivity {
                 Picasso.with(getBaseContext()).load(currentMenu.getImage())
                         .into(menu_image);
                 collapsingToolbarLayout.setTitle(currentMenu.getName());
-                menu_price.setText(currentMenu.getPrice() + " Rs");
+                menu_price.setText(currentMenu.getPrice() + " Rs.");
+                menu_name.setText(currentMenu.getName());
                 ratingBar.setRating(currentRating);
                 menu_description.setText(currentMenu.getDescription());
                 updateFavButton(false);

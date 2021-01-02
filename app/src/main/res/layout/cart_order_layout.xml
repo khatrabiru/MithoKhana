@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:padding="10dp"
+    android:padding="3dp"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -12,6 +12,7 @@
         app:cardCornerRadius="20dp">
 
         <LinearLayout
+            android:background="#f4f4f8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -36,6 +37,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="6dp"
                     android:text="Name of Menu"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 

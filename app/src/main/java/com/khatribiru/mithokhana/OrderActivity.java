@@ -66,8 +66,10 @@ public class OrderActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
+                        Order newOrder = adapter.getItem(position);
+
                         Intent menuDetail = new Intent(OrderActivity.this, MenuDetail.class);
-                        menuDetail.putExtra("menuId", order.getMenuId());
+                        menuDetail.putExtra("menuId", newOrder.getMenuId());
                         startActivity(menuDetail);
 
                     }

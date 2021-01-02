@@ -61,19 +61,21 @@ public class MyFav extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
+                        Favourite newFav = adapter.getItem(position);
+
                         Favourite fav = adapter.getItem(position);
 
                         if( favourite.isMenu() ) {
 
                             Intent menuDetail = new Intent(MyFav.this, MenuDetail.class);
-                            menuDetail.putExtra("menuId", fav.getId());
+                            menuDetail.putExtra("menuId", newFav.getId());
                             startActivity(menuDetail);
 
                         }
                         else {
 
                             Intent foodDetail = new Intent(MyFav.this, FoodDetail.class);
-                            foodDetail.putExtra("foodId", fav.getId());
+                            foodDetail.putExtra("foodId", newFav.getId());
                             startActivity(foodDetail);
 
                         }

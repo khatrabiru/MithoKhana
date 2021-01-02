@@ -24,10 +24,9 @@ import java.util.List;
 public class VegMenuAdapter extends PagerAdapter {
 
 
-    private List< Menu > menus;
-    private LayoutInflater layoutInflater;
-    private Context context;
-    private List< String > menuIds;
+    private final List< Menu > menus;
+    private final Context context;
+    private final List< String > menuIds;
 
 
     public VegMenuAdapter(List<Menu> menus, Context context,List< String > menuIds ) {
@@ -49,7 +48,7 @@ public class VegMenuAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View itemView = layoutInflater.inflate(R.layout.menu_item, container, false);
 
 
@@ -63,7 +62,7 @@ public class VegMenuAdapter extends PagerAdapter {
 
 
         price = itemView.findViewById(R.id.price);
-        price.setText(menus.get(position).getPrice() + " Rs");
+        price.setText(menus.get(position).getPrice() + " Rs.");
         price.setTextSize(12);
 
         ratingBar = itemView.findViewById(R.id.ratingBar);

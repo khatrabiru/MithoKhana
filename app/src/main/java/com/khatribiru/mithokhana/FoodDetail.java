@@ -57,7 +57,7 @@ public class FoodDetail extends AppCompatActivity {
             foodId = getIntent().getStringExtra("foodId");
         }
 
-        if( !foodId.isEmpty() && foodId != null ) {
+        if( !foodId.isEmpty()  ) {
 
             if(Common.isConnectedToInternet(getBaseContext())) {
 
@@ -135,7 +135,6 @@ public class FoodDetail extends AppCompatActivity {
                 currentFood = snapshot.getValue(Food.class);
                 Picasso.with(getBaseContext()).load(currentFood.getImage())
                         .into(food_image);
-                collapsingToolbarLayout.setTitle(currentFood.getName());
                 food_price.setText(" " + currentFood.getPrice()+ " Rs");
                 food_name.setText(currentFood.getName());
                 ratingBar.setRating(currentRating);

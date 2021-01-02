@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:padding="3dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,6 +12,7 @@
         app:cardCornerRadius="20dp">
 
         <LinearLayout
+            android:background="#f4f4f8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -38,6 +40,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="6dp"
                     android:text="Name of Food"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 

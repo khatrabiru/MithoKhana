@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:padding="3dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -44,14 +45,15 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="6dp"
                     android:text="Name of Food"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:textSize="13sp" />
-
+                    android:textSize="14sp" />
+s
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="6dp"
                     android:text="190 Rs."
                     android:textColor="@color/black"
@@ -63,7 +65,7 @@
                     android:stepSize="0.1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
                     android:isIndicator="true"
                     android:numStars="5" />
