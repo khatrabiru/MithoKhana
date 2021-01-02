@@ -31,7 +31,6 @@ public class Profile extends AppCompatActivity {
         profileName.setText(Common.currentUser.getFirstName() + " " + Common.currentUser.getLastName());
 
         backArrow = findViewById(R.id.backArrow);
-        backArrow.setVisibility(View.GONE);
 
         logout = findViewById(R.id.logout);
         logout.setVisibility(View.GONE);
@@ -60,6 +59,13 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, MyFav.class);
                 startActivity(intent);
+            }
+        });
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

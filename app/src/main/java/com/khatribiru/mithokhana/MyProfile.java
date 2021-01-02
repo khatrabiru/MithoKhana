@@ -13,6 +13,7 @@ import com.khatribiru.mithokhana.Model.User;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.paperdb.Paper;
 
 public class MyProfile extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class MyProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+        Paper.init(this);
 
         profileName = findViewById(R.id.profileName);
         firstName = findViewById(R.id.firstName);
@@ -54,6 +56,25 @@ public class MyProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MyProfile.this, EditProfile.class);
                 startActivity(intent);
+            }
+        });
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Paper.book().destroy();
+                Intent intent = new Intent(MyProfile.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
             }
         });
     }

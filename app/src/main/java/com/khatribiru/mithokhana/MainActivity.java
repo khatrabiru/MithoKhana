@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Paper.init(this);
-        Paper.book().destroy(); // just comment out this line not to use Paper.
+//        Paper.book().destroy(); // just comment out this line to use Paper.
 
         // Check if user details remembered
         String user = Paper.book().read(Common.USER_KEY);

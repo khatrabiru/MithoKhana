@@ -82,7 +82,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
             }
         });
-        return;
     }
 
     public void updateLoveCount(String postId, PostViewHolder postViewHolder) {
@@ -111,9 +110,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
-        return;
-    }
+        });    }
 
     public void updateCommentCount(String postId, PostViewHolder postViewHolder) {
 
@@ -145,7 +142,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
             }
         });
-        return;
     }
 
 
