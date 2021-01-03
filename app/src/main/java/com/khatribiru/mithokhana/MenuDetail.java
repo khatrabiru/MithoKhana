@@ -32,6 +32,7 @@ import com.khatribiru.mithokhana.Model.Menu;
 import com.khatribiru.mithokhana.Model.Order;
 import com.khatribiru.mithokhana.Model.Review;
 import com.khatribiru.mithokhana.ViewHolder.FoodViewHolder;
+import com.khatribiru.mithokhana.ViewHolder.ReviewViewHolder;
 import com.squareup.picasso.Picasso;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
@@ -57,8 +58,12 @@ public class MenuDetail extends AppCompatActivity implements RatingDialogListene
     FirebaseDatabase database;
     DatabaseReference menus;
     FirebaseRecyclerAdapter< Food, FoodViewHolder > adapter;
-    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.LayoutManager layoutManager, layoutManager1;
     FloatingActionButton btnAddToCart, btnRating, myFav;
+
+    DatabaseReference reviews;
+    RecyclerView recyclerReview;
+    FirebaseRecyclerAdapter<Review, ReviewViewHolder> adapter1;
 
 
     @Override
@@ -87,6 +92,14 @@ public class MenuDetail extends AppCompatActivity implements RatingDialogListene
         recycler_menu.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(layoutManager);
+
+        recyclerReview = findViewById(R.id.recyclerReview);
+        recyclerReview.setHasFixedSize(true);
+        layoutManager1 = new LinearLayoutManager(this);
+        recyclerReview.setLayoutManager(layoutManager1);
+
+
+
 
         collapsingToolbarLayout = findViewById(R.id.collapsing);
 
@@ -213,9 +226,9 @@ public class MenuDetail extends AppCompatActivity implements RatingDialogListene
                 if( snapshot.child("ratingCount").exists() ) ratingCount = Integer.parseInt(snapshot.child("ratingCount").getValue().toString());
 
 
-                if(snapshot.child(Common.currentUser.getPhone()).exists()) {
+                if(snapshot.child("reviews").child(Common.currentUser.getPhone()).exists()) {
 
-                    Review currentReview= snapshot.child(Common.currentUser.getPhone()).getValue(Review.class);
+                    Review currentReview= snapshot.child("reviews").child(Common.currentUser.getPhone()).getValue(Review.class);
                     ratingSum -= Integer.parseInt(currentReview.getStar());
 
                 } else {
@@ -228,8 +241,7 @@ public class MenuDetail extends AppCompatActivity implements RatingDialogListene
                 Review currentReview = new Review( Common.currentUser.getPhone(), Common.currentUser.getFullName(), String.valueOf(i), s);
                 table_reviews.child("ratingSum").setValue( String.valueOf(ratingSum) );
                 table_reviews.child("ratingCount").setValue( String.valueOf(ratingCount) );
-                table_reviews.child(Common.currentUser.getPhone()).setValue(currentReview);
-                finish();
+                table_reviews.child("reviews").child(Common.currentUser.getPhone()).setValue(currentReview);
             }
 
             @Override
@@ -363,6 +375,7 @@ public class MenuDetail extends AppCompatActivity implements RatingDialogListene
                 menu_description.setText(currentMenu.getDescription());
                 updateFavButton(false);
                 updateRating();
+                loadReviews();
             }
 
             @Override
@@ -370,5 +383,23 @@ public class MenuDetail extends AppCompatActivity implements RatingDialogListene
 
             }
         });
+    }
+
+    private void loadReviews() {
+        reviews = database.getReference("reviews").child(menuId).child("reviews");
+        // Get rating and update firebase
+
+        adapter1 = new FirebaseRecyclerAdapter<Review, ReviewViewHolder>(Review.class,
+                R.layout.review_item,
+                ReviewViewHolder.class,
+                reviews){
+            @Override
+            protected void populateViewHolder(ReviewViewHolder reviewViewHolder, Review review, int i) {
+                reviewViewHolder.name.setText(review.getName());
+                reviewViewHolder.review.setText(review.getComment());
+                reviewViewHolder.ratingBar.setRating( Integer.parseInt(review.getStar()) );
+            }
+        };
+        recyclerReview.setAdapter(adapter1);
     }
 }
