@@ -17,12 +17,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import org.jetbrains.annotations.NotNull;
 import com.khatribiru.mithokhana.Common.Common;
 import com.khatribiru.mithokhana.Model.Favourite;
 import com.khatribiru.mithokhana.Model.Food;
+import com.khatribiru.mithokhana.Model.Review;
 import com.squareup.picasso.Picasso;
+import com.stepstone.apprating.AppRatingDialog;
+import com.stepstone.apprating.listener.RatingDialogListener;
 
-public class FoodDetail extends AppCompatActivity {
+import java.util.Arrays;
+
+public class FoodDetail extends AppCompatActivity implements RatingDialogListener {
 
     TextView food_name, food_price, food_description;
     ImageView food_image;
@@ -35,7 +41,7 @@ public class FoodDetail extends AppCompatActivity {
     DatabaseReference foods;
 
     Food currentFood;
-    FloatingActionButton myFav;
+    FloatingActionButton myFav, btnRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class FoodDetail extends AppCompatActivity {
         food_price = findViewById(R.id.food_price);
         collapsingToolbarLayout = findViewById(R.id.collapsing);
         ratingBar = findViewById(R.id.ratingBar);
+        btnRating = findViewById(R.id.btnRating);
         myFav = findViewById(R.id.btnMyFav);
 
         database = FirebaseDatabase.getInstance();
@@ -77,7 +84,117 @@ public class FoodDetail extends AppCompatActivity {
                 updateFavButton(true);
             }
         });
+
+        btnRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Implement rating dialog
+                showRatingDialog();
+            }
+        });
     }
+
+    private void showRatingDialog() {
+        new AppRatingDialog.Builder()
+                .setPositiveButtonText("Submit")
+                .setNegativeButtonText("Cancel")
+                .setNoteDescriptions(Arrays.asList("Very bad", "Not good", "Quiet ok", "Very good", "Excellent"))
+                .setDefaultRating(0)
+                .setTitle("Rate this food")
+                .setTitleTextColor(R.color.colorPrimary)
+                .setDescriptionTextColor(R.color.colorPrimary)
+                .setHint("Write your review here")
+                .setDefaultRating(5)
+                .setHintTextColor(R.color.colorAccent)
+                .setCommentTextColor(android.R.color.white)
+                .setCommentBackgroundColor(R.color.colorPrimaryDark)
+                .setWindowAnimation(R.style.RatingDialogFadeAnim)
+                .create(FoodDetail.this)
+                .show();
+    }
+
+    @Override
+    public void onNegativeButtonClicked() {
+
+    }
+
+    @Override
+    public void onPositiveButtonClicked(int i, @NotNull String s) {
+
+        final FirebaseDatabase db = FirebaseDatabase.getInstance();
+        final DatabaseReference table_reviews = db.getReference("reviews").child(foodId);
+
+        // Get rating and update firebase
+        table_reviews.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                int ratingSum = 0;
+                if( snapshot.child("ratingSum").exists() ) ratingSum = Integer.parseInt(snapshot.child("ratingSum").getValue().toString());
+
+                int ratingCount = 0;
+                if( snapshot.child("ratingCount").exists() ) ratingCount = Integer.parseInt(snapshot.child("ratingCount").getValue().toString());
+
+
+                if(snapshot.child(Common.currentUser.getPhone()).exists()) {
+
+                    Review currentReview= snapshot.child(Common.currentUser.getPhone()).getValue(Review.class);
+                    ratingSum -= Integer.parseInt(currentReview.getStar());
+
+                } else {
+
+                    ratingCount++;
+                }
+
+                ratingSum += i;
+
+                Review currentReview = new Review( Common.currentUser.getPhone(), Common.currentUser.getFullName(), String.valueOf(i), s);
+                table_reviews.child("ratingSum").setValue( String.valueOf(ratingSum) );
+                table_reviews.child("ratingCount").setValue( String.valueOf(ratingCount) );
+                table_reviews.child(Common.currentUser.getPhone()).setValue(currentReview);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onNeutralButtonClicked() {
+
+    }
+
+    private void updateRating() {
+
+        final FirebaseDatabase db = FirebaseDatabase.getInstance();
+        final DatabaseReference table_reviews = db.getReference("reviews").child(foodId);
+        // Get rating and update firebase
+        table_reviews.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                int ratingSum = 0;
+                if( snapshot.child("ratingSum").exists() ) ratingSum = Integer.parseInt(snapshot.child("ratingSum").getValue().toString());
+
+                int ratingCount = 0;
+                if( snapshot.child("ratingCount").exists() ) ratingCount = Integer.parseInt(snapshot.child("ratingCount").getValue().toString());
+                float currentRating = 0;
+                if( ratingCount > 0 ) currentRating = (float) ratingSum / (float) ratingCount;
+                ratingBar.setRating(currentRating);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     private void updateFavButton(boolean flag) {
         final DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("favourites").child(Common.currentUser.getPhone()).child(foodId);
@@ -124,22 +241,14 @@ public class FoodDetail extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                int ratingSum = 0;
-                if( snapshot.child("ratingSum").exists() ) ratingSum = Integer.parseInt(snapshot.child("ratingSum").getValue().toString());
-
-                int ratingCount = 0;
-                if( snapshot.child("ratingCount").exists() ) ratingCount = Integer.parseInt(snapshot.child("ratingCount").getValue().toString());
-                float currentRating = 0;
-                if( ratingCount > 0 ) currentRating = (float) ratingSum / (float) ratingCount;
-
                 currentFood = snapshot.getValue(Food.class);
                 Picasso.with(getBaseContext()).load(currentFood.getImage())
                         .into(food_image);
                 food_price.setText(" " + currentFood.getPrice()+ " Rs");
                 food_name.setText(currentFood.getName());
-                ratingBar.setRating(currentRating);
                 food_description.setText(currentFood.getDescription());
                 updateFavButton(false);
+                updateRating();
             }
 
             @Override

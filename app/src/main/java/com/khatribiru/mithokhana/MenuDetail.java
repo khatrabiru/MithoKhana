@@ -30,14 +30,20 @@ import com.khatribiru.mithokhana.Model.Favourite;
 import com.khatribiru.mithokhana.Model.Food;
 import com.khatribiru.mithokhana.Model.Menu;
 import com.khatribiru.mithokhana.Model.Order;
+import com.khatribiru.mithokhana.Model.Review;
 import com.khatribiru.mithokhana.ViewHolder.FoodViewHolder;
 import com.squareup.picasso.Picasso;
+import com.stepstone.apprating.AppRatingDialog;
+import com.stepstone.apprating.listener.RatingDialogListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 
-public class MenuDetail extends AppCompatActivity {
+public class MenuDetail extends AppCompatActivity implements RatingDialogListener {
 
     TextView menu_description, menu_price, count, menu_name;
     ImageView menu_image, plus, minus;
@@ -155,7 +161,116 @@ public class MenuDetail extends AppCompatActivity {
             }
         });
 
+        btnRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Implement rating dialog
+                showRatingDialog();
+            }
+        });
     }
+
+    private void showRatingDialog() {
+        new AppRatingDialog.Builder()
+                .setPositiveButtonText("Submit")
+                .setNegativeButtonText("Cancel")
+                .setNoteDescriptions(Arrays.asList("Very bad", "Not good", "Quiet ok", "Very good", "Excellent"))
+                .setDefaultRating(0)
+                .setTitle("Rate this food")
+                .setTitleTextColor(R.color.colorPrimary)
+                .setDescriptionTextColor(R.color.colorPrimary)
+                .setHint("Write your review here")
+                .setDefaultRating(5)
+                .setHintTextColor(R.color.colorAccent)
+                .setCommentTextColor(android.R.color.white)
+                .setCommentBackgroundColor(R.color.colorPrimaryDark)
+                .setWindowAnimation(R.style.RatingDialogFadeAnim)
+                .create(MenuDetail.this)
+                .show();
+    }
+
+    @Override
+    public void onNegativeButtonClicked() {
+
+    }
+
+    @Override
+    public void onPositiveButtonClicked(int i, @NotNull String s) {
+
+        final FirebaseDatabase db = FirebaseDatabase.getInstance();
+        final DatabaseReference table_reviews = db.getReference("reviews").child(menuId);
+
+        // Get rating and update firebase
+        table_reviews.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                int ratingSum = 0;
+                if( snapshot.child("ratingSum").exists() ) ratingSum = Integer.parseInt(snapshot.child("ratingSum").getValue().toString());
+
+                int ratingCount = 0;
+                if( snapshot.child("ratingCount").exists() ) ratingCount = Integer.parseInt(snapshot.child("ratingCount").getValue().toString());
+
+
+                if(snapshot.child(Common.currentUser.getPhone()).exists()) {
+
+                    Review currentReview= snapshot.child(Common.currentUser.getPhone()).getValue(Review.class);
+                    ratingSum -= Integer.parseInt(currentReview.getStar());
+
+                } else {
+
+                    ratingCount++;
+                }
+
+                ratingSum += i;
+
+                Review currentReview = new Review( Common.currentUser.getPhone(), Common.currentUser.getFullName(), String.valueOf(i), s);
+                table_reviews.child("ratingSum").setValue( String.valueOf(ratingSum) );
+                table_reviews.child("ratingCount").setValue( String.valueOf(ratingCount) );
+                table_reviews.child(Common.currentUser.getPhone()).setValue(currentReview);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onNeutralButtonClicked() {
+
+    }
+
+    private void updateRating() {
+
+        final FirebaseDatabase db = FirebaseDatabase.getInstance();
+        final DatabaseReference table_reviews = db.getReference("reviews").child(menuId);
+        // Get rating and update firebase
+        table_reviews.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                int ratingSum = 0;
+                if( snapshot.child("ratingSum").exists() ) ratingSum = Integer.parseInt(snapshot.child("ratingSum").getValue().toString());
+
+                int ratingCount = 0;
+                if( snapshot.child("ratingCount").exists() ) ratingCount = Integer.parseInt(snapshot.child("ratingCount").getValue().toString());
+                float currentRating = 0;
+                if( ratingCount > 0 ) currentRating = (float) ratingSum / (float) ratingCount;
+                ratingBar.setRating(currentRating);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     private void updateFavButton(boolean flag) {
         final DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("favourites").child(Common.currentUser.getPhone()).child(menuId);
@@ -209,7 +324,6 @@ public class MenuDetail extends AppCompatActivity {
                 Picasso.with(getBaseContext()).load(food.getImage())
                         .into(foodViewHolder.image);
                 foodViewHolder.price.setText(food.getPrice() +" Rs.");
-                foodViewHolder.ratingBar.setRating(food.getRating());
                 foodViewHolder.description.setText(food.getDescription());
 
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
@@ -226,7 +340,6 @@ public class MenuDetail extends AppCompatActivity {
         };
         recycler_menu.setAdapter(adapter);
     }
-
     private void loadMenuDetail() {
         menus.child(menuId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -249,6 +362,7 @@ public class MenuDetail extends AppCompatActivity {
                 ratingBar.setRating(currentRating);
                 menu_description.setText(currentMenu.getDescription());
                 updateFavButton(false);
+                updateRating();
             }
 
             @Override

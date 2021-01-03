@@ -29,8 +29,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
-                android:layout_marginEnd="51dp"
-                android:layout_marginRight="51dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -54,16 +52,6 @@
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:stepSize="0.1" />
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="wrap_content"

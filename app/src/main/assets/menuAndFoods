@@ -6,8 +6,6 @@
     "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmgg-vitchakorn-zXNC_lBBVGE-unsplash.jpg?alt=media&token=c377c595-9c4f-47f7-9706-ed5f2b361bf1",
     "name" : "Rice",
     "price" : "20",
-    "ratingCount" : "3",
-    "ratingSum" : "14",
     "type" : "Veg"
   }, "22":  {
     "description" : "Here it is. My lentil soup is made with mostly pantry ingredients but includes hearty greens and a squeeze of lemon for bright, fresh flavor. It’s seasoned with a few of my favorite spices and plenty of freshly ground black pepper. Honestly, it’s the best lentil soup I’ve ever had.",
@@ -15,8 +13,6 @@
     "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fcayla1-w6ftFbPCs9I-unsplash.jpg?alt=media&token=56ff60b1-530e-414f-843a-6711f76c207a",
     "name" : "Lentil soup( Daal )",
     "price" : "15",
-    "ratingCount" : "3",
-    "ratingSum" : "13",
     "type" : "Veg"
   }, "33":  {
     "description" : "Combine the sweetcorn, onion, tomatoes and coriander in a large bowl. Make the dressing by whisking the lime juice into the olive oil and add the honey. Season to taste and pour over the corn salad.",
@@ -24,8 +20,6 @@
     "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fgita-krishnamurti-7hzmOremvEg-unsplash.jpg?alt=media&token=2cd12f3a-8f33-4c80-a1d6-01d4d2f58c06",
     "name" : "Salad",
     "price" : "10",
-    "ratingCount" : "2",
-    "ratingSum" : "10",
     "type" : "Veg"
   }, "44":  {
     "description" : "Try our easy and delicious recipe for the perfect chicken gravy, which goes down a treat every single time. An essential accompaniment to your Sunday roast",
@@ -33,8 +27,6 @@
     "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmadmax-chef-B3b8dsSfoqg-unsplash.jpg?alt=media&token=9ddf7b6d-6465-49ac-abda-1ca62680db35",
     "name" : "Chicken",
     "price" : "15",
-    "ratingCount" : "3",
-    "ratingSum" : "14",
     "type" : "NonVeg"
   }, "55":  {
     "description" : "Egg Curry is a deliciously rich onion tomato gravy, tastes exactly like the ones you get in dhabas. These are perfect with some rice or paratha.",
@@ -42,8 +34,6 @@
     "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fhanna-balan-efGe3KlnlLg-unsplash.jpg?alt=media&token=857447c1-de8a-445c-ad73-b68a67abad9d",
     "name" : "Egg Curry",
     "price" : "15",
-    "ratingCount" : "3",
-    "ratingSum" : "13",
     "type" : "NonVeg"
   }, "66":  {
     "description" : "Paneer or Indian cottage cheese is a fresh cheese common in the Indian subcontinent. It is a non-aged, non-melting soft cheese made by curdling milk with a fruit- or vegetable-derived acid, such as lemon juice. Its acid-set form before pressing is called chhena",
@@ -51,8 +41,6 @@
     "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fabhishek-hajare-Tg5sYkG99eE-unsplash.jpg?alt=media&token=628c66e9-61fa-499d-be79-bba874cabdd2",
     "name" : "Paneer",
     "price" : "55",
-    "ratingCount" : "10",
-    "ratingSum" : "47",
     "type" : "Veg"
   }, "77":  {
     "description" : "Roti is a round flatbread native to the Indian subcontinent made from stoneground wholemeal flour, traditionally known as gehu ka atta, and water that is combined into a dough. Roti is consumed in many countries worldwide",
@@ -60,8 +48,6 @@
     "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fusman-yousaf-4GDW-Rt4BVQ-unsplash.jpg?alt=media&token=046d61a4-ab7d-4d64-be57-68a48c5cc447",
     "name" : "Roti",
     "price" : "25",
-    "ratingCount" : "3",
-    "ratingSum" : "14",
     "type" : "Veg"
   }
   },
@@ -74,8 +60,6 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmadmax-chef-B3b8dsSfoqg-unsplash.jpg?alt=media&token=9ddf7b6d-6465-49ac-abda-1ca62680db35",
         "name" : "Chicken",
         "price" : "15",
-        "ratingCount" : "3",
-        "ratingSum" : "14",
         "type" : "NonVeg"
       },{
         "description" : "Specialty Rices. Wehani rice is a whole-grain, reddish-brown American hybrid of basmati and long-grain brown rice",
@@ -83,16 +67,12 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmgg-vitchakorn-zXNC_lBBVGE-unsplash.jpg?alt=media&token=c377c595-9c4f-47f7-9706-ed5f2b361bf1",
         "name" : "Rice",
         "price" : "20",
-        "ratingCount" : "3",
-        "ratingSum" : "14",
         "type" : "Veg"
       }],
       "id" : "123",
       "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fabhishek-sanwa-limbu-5Q-7kgG7xbo-unsplash.jpg?alt=media&token=d7fb0971-051e-4c46-84d2-85a6fa03ef1e",
       "name" : "Chicken and Rice",
       "price" : "150",
-      "ratingCount" : "2",
-      "ratingSum" : "10",
       "type" : "NonVeg"
     },"1234" : {
       "description" : "South Indian egg curry recipe - Simple, delicious, hot and spicy curry made with basic ingredients. Serve it with rice, chapathi, phulka or bread",
@@ -102,8 +82,6 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fhanna-balan-efGe3KlnlLg-unsplash.jpg?alt=media&token=857447c1-de8a-445c-ad73-b68a67abad9d",
         "name" : "Egg Curry",
         "price" : "15",
-        "ratingCount" : "3",
-        "ratingSum" : "13",
         "type" : "NonVeg"
       }, {
         "description" : "Specialty Rices. Wehani rice is a whole-grain, reddish-brown American hybrid of basmati and long-grain brown rice",
@@ -111,16 +89,12 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmgg-vitchakorn-zXNC_lBBVGE-unsplash.jpg?alt=media&token=c377c595-9c4f-47f7-9706-ed5f2b361bf1",
         "name" : "Rice",
         "price" : "20",
-        "ratingCount" : "3",
-        "ratingSum" : "14",
         "type" : "Veg"
       } ],
       "id" : "1234",
       "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fhanna-balan-efGe3KlnlLg-unsplash.jpg?alt=media&token=857447c1-de8a-445c-ad73-b68a67abad9d",
       "name" : "Egg curry with rice",
       "price" : "190",
-      "ratingCount" : "3",
-      "ratingSum" : "8",
       "type" : "NonVeg"
     },"12345" : {
       "description" : "Biryani is a mixed rice dish with its origins among the Muslims of the Indian subcontinent",
@@ -130,16 +104,12 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmadmax-chef-B3b8dsSfoqg-unsplash.jpg?alt=media&token=9ddf7b6d-6465-49ac-abda-1ca62680db35",
         "name" : "Chicken",
         "price" : "15",
-        "ratingCount" : "3",
-        "ratingSum" : "14",
         "type" : "NonVeg"
       } ],
       "id" : "12345",
       "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmuhammad-amer-77ItGP98s6g-unsplash.jpg?alt=media&token=e5d7643e-2c9e-4231-9ebd-a073800d2228",
       "name" : "Chicken Biryani",
       "price" : "130",
-      "ratingCount" : "2",
-      "ratingSum" : "7",
       "type" : "NonVeg"
     },"321" : {
       "description" : "This recipe was appreciated by my family sine they were getting tired of plain rice",
@@ -149,8 +119,6 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fmgg-vitchakorn-zXNC_lBBVGE-unsplash.jpg?alt=media&token=c377c595-9c4f-47f7-9706-ed5f2b361bf1",
         "name" : "Rice",
         "price" : "20",
-        "ratingCount" : "3",
-        "ratingSum" : "14",
         "type" : "Veg"
       } , {
         "description" : "Here it is. My lentil soup is made with mostly pantry ingredients but includes hearty greens and a squeeze of lemon for bright, fresh flavor. It’s seasoned with a few of my favorite spices and plenty of freshly ground black pepper. Honestly, it’s the best lentil soup I’ve ever had.",
@@ -158,8 +126,6 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fcayla1-w6ftFbPCs9I-unsplash.jpg?alt=media&token=56ff60b1-530e-414f-843a-6711f76c207a",
         "name" : "Lentil soup( Daal )",
         "price" : "15",
-        "ratingCount" : "3",
-        "ratingSum" : "13",
         "type" : "Veg"
       } , {
         "description" : "Combine the sweetcorn, onion, tomatoes and coriander in a large bowl. Make the dressing by whisking the lime juice into the olive oil and add the honey. Season to taste and pour over the corn salad.",
@@ -167,16 +133,12 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fgita-krishnamurti-7hzmOremvEg-unsplash.jpg?alt=media&token=2cd12f3a-8f33-4c80-a1d6-01d4d2f58c06",
         "name" : "Salad",
         "price" : "10",
-        "ratingCount" : "2",
-        "ratingSum" : "10",
         "type" : "Veg"
       } ],
       "id" : "321",
       "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fpille-riin-priske-xmuIgjuQG0M-unsplash.jpg?alt=media&token=303a5b53-f171-440e-8070-380803163d4b",
       "name" : "Plane rice with vegetables",
       "price" : "200",
-      "ratingCount" : "2",
-      "ratingSum" : "9",
       "type" : "Veg"
     },"4321" : {
       "description" : "Mildly spiced dish that is perfect to serve with roti or dal bhat. I love curries with mixed vegetables",
@@ -186,8 +148,6 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fusman-yousaf-4GDW-Rt4BVQ-unsplash.jpg?alt=media&token=046d61a4-ab7d-4d64-be57-68a48c5cc447",
         "name" : "Roti",
         "price" : "25",
-        "ratingCount" : "3",
-        "ratingSum" : "14",
         "type" : "Veg"
       }, {
         "description" : "Here it is. My lentil soup is made with mostly pantry ingredients but includes hearty greens and a squeeze of lemon for bright, fresh flavor. It’s seasoned with a few of my favorite spices and plenty of freshly ground black pepper. Honestly, it’s the best lentil soup I’ve ever had.",
@@ -195,16 +155,12 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fcayla1-w6ftFbPCs9I-unsplash.jpg?alt=media&token=56ff60b1-530e-414f-843a-6711f76c207a",
         "name" : "Lentil soup( Daal )",
         "price" : "15",
-        "ratingCount" : "3",
-        "ratingSum" : "13",
         "type" : "Veg"
       } ],
       "id" : "4321",
       "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fusman-yousaf-4GDW-Rt4BVQ-unsplash.jpg?alt=media&token=046d61a4-ab7d-4d64-be57-68a48c5cc447",
       "name" : "Roti and Tarkari",
       "price" : "150",
-      "ratingCount" : "3",
-      "ratingSum" : "8",
       "type" : "Veg"
     },"54321" : {
       "description" : "Both aloo and paneer takes the center stage in their respective curries with other vegetables as supporting ingredients",
@@ -214,8 +170,6 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fabhishek-hajare-Tg5sYkG99eE-unsplash.jpg?alt=media&token=628c66e9-61fa-499d-be79-bba874cabdd2",
         "name" : "Paneer",
         "price" : "55",
-        "ratingCount" : "10",
-        "ratingSum" : "47",
         "type" : "NonVeg"
       }, {
         "description" : "Egg Curry is a deliciously rich onion tomato gravy, tastes exactly like the ones you get in dhabas. These are perfect with some rice or paratha.",
@@ -223,23 +177,18 @@
         "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fhanna-balan-efGe3KlnlLg-unsplash.jpg?alt=media&token=857447c1-de8a-445c-ad73-b68a67abad9d",
         "name" : "Egg Curry",
         "price" : "15",
-        "ratingCount" : "3",
-        "ratingSum" : "13",
         "type" : "NonVeg"
       }  ],
       "id" : "54321",
       "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2Fnand-shah-1fAjknDSumY-unsplash.jpg?alt=media&token=cb25156f-e968-4037-8a93-3b1657dbdce0",
       "name" : "Aaloo Paneer",
       "price" : "120",
-      "ratingCount" : "2",
-      "ratingSum" : "10",
       "type" : "Veg"
     }
   },
   "user" : {
     "7384871110" : {
       "firstName" : "Nirajan",
-      "fullName" : "Nirajan Khatri",
       "id" : "7384871110",
       "image" : "https://firebasestorage.googleapis.com/v0/b/mitho-khana.appspot.com/o/images%2F555d5dbe-e9cb-427c-ba17-6c4a5ed404dc?alt=media&token=a5040bfa-6130-4f5d-a889-4ae3528b792d",
       "lastName" : "Khatri",

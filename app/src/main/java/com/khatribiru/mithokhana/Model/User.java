@@ -11,13 +11,11 @@ public class User {
     private String Password;
     private String Image;
     private List< Double > Location;
-    private List< String > FavouriteFoods;
-    private List< Menu > FavouriteMenus;
 
     public User() {
     }
 
-    public User(String id, String firstName, String lastName, String phone, String password, String image, List<Double> location, List<String> favouriteFoods, List<Menu> favouriteMenus) {
+    public User(String id, String firstName, String lastName, String phone, String password, String image, List<Double> location) {
         this.id = id;
         FirstName = firstName;
         LastName = lastName;
@@ -25,8 +23,6 @@ public class User {
         Password = password;
         Image = image;
         Location = location;
-        FavouriteFoods = favouriteFoods;
-        FavouriteMenus = favouriteMenus;
     }
 
     public String getId() {
@@ -83,22 +79,6 @@ public class User {
 
     public void setLocation(List<Double> location) {
         Location = location;
-    }
-
-    public List<String> getFavouriteFoods() {
-        return FavouriteFoods;
-    }
-
-    public void setFavouriteFoods(List<String> favouriteFoods) {
-        FavouriteFoods = favouriteFoods;
-    }
-
-    public List<Menu> getFavouriteMenus() {
-        return FavouriteMenus;
-    }
-
-    public void setFavouriteMenus(List<Menu> favouriteMenus) {
-        FavouriteMenus = favouriteMenus;
     }
 
     public String getFullName() {

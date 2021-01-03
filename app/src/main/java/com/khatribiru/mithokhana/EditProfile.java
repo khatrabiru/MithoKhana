@@ -106,9 +106,7 @@ public class EditProfile extends AppCompatActivity {
                         phone.getText().toString(),
                         password.getText().toString(),
                         imageUrl,
-                        user.getLocation(),
-                        user.getFavouriteFoods(),
-                        user.getFavouriteMenus()
+                        user.getLocation()
                 );
 
                 if( !validateName() || !validatePhone() || !validatePassword() ) {

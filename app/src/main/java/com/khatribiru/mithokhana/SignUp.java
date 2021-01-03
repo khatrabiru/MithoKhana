@@ -90,8 +90,6 @@ public class SignUp extends AppCompatActivity {
                                         phone.getText().toString(),
                                         password.getText().toString(),
                                         "",
-                                        null,
-                                        null,
                                         null);
                                 Common.currentUser = newUser;
 

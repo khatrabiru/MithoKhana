@@ -13,6 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.khatribiru.mithokhana.MainActivity;
 import com.khatribiru.mithokhana.MenuDetail;
 import com.khatribiru.mithokhana.Model.Menu;
@@ -66,7 +71,7 @@ public class VegMenuAdapter extends PagerAdapter {
         price.setTextSize(12);
 
         ratingBar = itemView.findViewById(R.id.ratingBar);
-        ratingBar.setRating( menus.get(position).getRating() );
+        updateRating(ratingBar, menuIds.get(position));
 
         image = itemView.findViewById(R.id.image);
         Picasso.with(context).load(menus.get(position).getImage()).into(image);
@@ -87,6 +92,33 @@ public class VegMenuAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView( (View) object );
+    }
+
+    private void updateRating(RatingBar ratingBar, String menuId) {
+
+        final FirebaseDatabase db = FirebaseDatabase.getInstance();
+        final DatabaseReference table_reviews = db.getReference("reviews").child(menuId);
+        // Get rating and update firebase
+        table_reviews.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                int ratingSum = 0;
+                if( snapshot.child("ratingSum").exists() ) ratingSum = Integer.parseInt(snapshot.child("ratingSum").getValue().toString());
+
+                int ratingCount = 0;
+                if( snapshot.child("ratingCount").exists() ) ratingCount = Integer.parseInt(snapshot.child("ratingCount").getValue().toString());
+                float currentRating = 0;
+                if( ratingCount > 0 ) currentRating = (float) ratingSum / (float) ratingCount;
+                ratingBar.setRating(currentRating);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }
